@@ -452,16 +452,16 @@ const chartExample5 = {
         label: "Emails",
         pointRadius: 0,
         pointHoverRadius: 0,
-        backgroundColor: ["#4acccd", "#f4f3ef"],
+        backgroundColor: ["#A3A0FB", "#FF7285","#4AD991"],
         borderWidth: 0,
-        data: [60, 40]
+        data: [30,40,30]
       }
     ]
   },
   options: {
     elements: {
       center: {
-        text: "60%",
+        text: "19คน",
         color: "#66615c", // Default is #000000
         fontStyle: "Arial", // Default is Arial
         sidePadding: 60 // Defualt is 20 (as a percentage)
@@ -763,35 +763,21 @@ const chartExample9 = {
 const chartExample10 = {
   data: {
     labels: [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20
+      "คนที่1",
+      "คนที่2",
+      "คนที่3",
+      "คนที่4",
+      "คนที่5",
+      "คนที่6",
+      "คนที่7"
     ],
     datasets: [
       {
         label: "Data",
-        borderColor: "#fcc468",
+        borderColor: "#A3A1FB",
         fill: true,
-        backgroundColor: "#fcc468",
-        hoverBorderColor: "#fcc468",
+        backgroundColor: "#A3A1FB",
+        hoverBorderColor: "#A3A1FB",
         borderWidth: 5,
         data: [
           100,
@@ -800,20 +786,7 @@ const chartExample10 = {
           100,
           90,
           130,
-          110,
-          100,
-          80,
-          110,
-          130,
-          140,
-          130,
-          120,
-          130,
-          80,
-          100,
-          90,
-          120,
-          130
+          110
         ]
       }
     ]

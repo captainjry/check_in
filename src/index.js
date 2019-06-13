@@ -9,7 +9,7 @@ import AdminLayout from "./layouts/Admin/Admin.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import "./assets/scss/paper-dashboard.scss";
 import "./assets/demo/demo.css";
-
+import "./assets/scss/paper-dashboard/styles.css";
 const hist = createBrowserHistory();
 
 ReactDOM.render(

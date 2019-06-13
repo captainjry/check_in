@@ -5090,6 +5090,7 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400; }
 
+
 a {
   color: #51cbce; }
   a:hover, a:focus {
@@ -8731,7 +8732,7 @@ img {
   padding: 15px 15px 0px; }
   .card-stats .card-body .numbers {
     text-align: right;
-    font-size: 2em; }
+    font-size: 2000em; }
     .card-stats .card-body .numbers p {
       margin-bottom: 0; }
     .card-stats .card-body .numbers .card-category {
