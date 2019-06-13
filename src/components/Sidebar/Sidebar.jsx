@@ -7,6 +7,8 @@ import PerfectScrollbar from "perfect-scrollbar";
 import avatar from "../../assets/img/faces/ayo-ogunseinde-2.jpg";
 import logo from "../../assets/img/react-logo.png";
 
+//import "./Sidebar.css"
+
 var ps;
 
 class Sidebar extends React.Component {
@@ -132,7 +134,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div
-        className="sidebar"
+        className="sidebar bgconn"
         data-color={this.props.bgColor}
         data-active-color={this.props.activeColor}
       >
@@ -149,12 +151,12 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            Conn
           </a>
         </div>
 
         <div className="sidebar-wrapper" ref="sidebar">
-          <div className="user">
+          {/*<div className="user">
             <div className="photo">
               <img src={avatar} alt="Avatar" />
             </div>
@@ -195,7 +197,7 @@ class Sidebar extends React.Component {
                 </ul>
               </Collapse>
             </div>
-          </div>
+              </div>*/}
           <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>

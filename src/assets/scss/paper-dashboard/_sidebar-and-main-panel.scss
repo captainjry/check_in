@@ -318,7 +318,7 @@
     }
 
     &:after{
-        @include icon-gradient($default-color);
+        background: $conn-color;
         z-index: 3;
     }
 

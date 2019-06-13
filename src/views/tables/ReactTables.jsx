@@ -1,6 +1,7 @@
 import React from "react";
 // react component for creating dynamic tables
 import ReactTable from "react-table";
+import "./reportTab.css";
 
 // reactstrap components
 import {
@@ -10,6 +11,11 @@ import {
   CardBody,
   CardTitle,
   Row,
+  Nav,
+  NavItem,
+  NavLink,
+  TabPane,
+  TabContent,
   Col
 } from "reactstrap";
 
@@ -68,78 +74,7 @@ class ReactTables extends React.Component {
           name: prop[0],
           position: prop[1],
           office: prop[2],
-          age: prop[3],
-          actions: (
-            // we've added some custom button actions
-            <div className="actions-right">
-              {/* use this button to add a like kind of action */}
-              <Button
-                onClick={() => {
-                  let obj = this.state.data.find(o => o.id === key);
-                  alert(
-                    "You've clicked LIKE button on \n{ \nName: " +
-                      obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
-                      obj.age +
-                      "\n}."
-                  );
-                }}
-                color="info"
-                size="sm"
-                className="btn-icon btn-link like"
-              >
-                <i className="fa fa-heart" />
-              </Button>{" "}
-              {/* use this button to add a edit kind of action */}
-              <Button
-                onClick={() => {
-                  let obj = this.state.data.find(o => o.id === key);
-                  alert(
-                    "You've clicked EDIT button on \n{ \nName: " +
-                      obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
-                      obj.age +
-                      "\n}."
-                  );
-                }}
-                color="warning"
-                size="sm"
-                className="btn-icon btn-link edit"
-              >
-                <i className="fa fa-edit" />
-              </Button>{" "}
-              {/* use this button to remove the data row */}
-              <Button
-                onClick={() => {
-                  var data = this.state.data;
-                  data.find((o, i) => {
-                    if (o.id === key) {
-                      // here you should add some custom code so you can delete the data
-                      // from this component and from your server as well
-                      data.splice(i, 1);
-                      console.log(data);
-                      return true;
-                    }
-                    return false;
-                  });
-                  this.setState({ data: data });
-                }}
-                color="danger"
-                size="sm"
-                className="btn-icon btn-link remove"
-              >
-                <i className="fa fa-times" />
-              </Button>{" "}
-            </div>
-          )
+          age: prop[3]
         };
       })
     };
@@ -152,39 +87,152 @@ class ReactTables extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">React-Tables</CardTitle>
+                  <Col md="6" className="col-md-6Table">
+                    <Card className="cardTable">
+                      <CardBody className="card-bodytab card-bodyTable">
+                        <div className="nav-tabs-navigation">
+                          <div className="nav-tabs-wrapper">
+                            <Nav id="tabs" role="tablist" tabs>
+                              <NavItem>
+                                <NavLink
+                                  aria-expanded={
+                                    this.state.horizontalTabs === "Day"
+                                  }
+                                  data-toggle="tab"
+                                  href="#pablo"
+                                  role="tab"
+                                  className={
+                                    this.state.horizontalTabs === "Day"
+                                      ? "active"
+                                      : ""
+                                  }
+                                  onClick={() =>
+                                    this.setState({ horizontalTabs: "Day" })
+                                  }
+                                >
+                                  Day
+                                </NavLink>
+                              </NavItem>
+                              <NavItem>
+                                <NavLink
+                                  aria-expanded={
+                                    this.state.horizontalTabs === "Week"
+                                  }
+                                  data-toggle="tab"
+                                  href="#pablo"
+                                  role="tab"
+                                  className={
+                                    this.state.horizontalTabs === "Week"
+                                      ? "active"
+                                      : ""
+                                  }
+                                  onClick={() =>
+                                    this.setState({ horizontalTabs: "Week" })
+                                  }
+                                >
+                                  Week
+                                </NavLink>
+                              </NavItem>
+                              <NavItem>
+                                <NavLink
+                                  aria-expanded={
+                                    this.state.horizontalTabs === "Month"
+                                  }
+                                  data-toggle="tab"
+                                  href="#pablo"
+                                  role="tab"
+                                  className={
+                                    this.state.horizontalTabs === "Month"
+                                      ? "active"
+                                      : ""
+                                  }
+                                  onClick={() =>
+                                    this.setState({ horizontalTabs: "Month" })
+                                  }
+                                >
+                                  Month
+                                </NavLink>
+                              </NavItem>
+                              <NavItem>
+                                <NavLink
+                                  aria-expanded={
+                                    this.state.horizontalTabs === "Year"
+                                  }
+                                  data-toggle="tab"
+                                  href="#pablo"
+                                  role="tab"
+                                  className={
+                                    this.state.horizontalTabs === "Year"
+                                      ? "active"
+                                      : ""
+                                  }
+                                  onClick={() =>
+                                    this.setState({ horizontalTabs: "Year" })
+                                  }
+                                >
+                                  Year
+                                </NavLink>
+                              </NavItem>
+                            </Nav>
+                          </div>
+                        </div>
+                        <TabContent
+                          className="text-center"
+                          id="my-tab-content"
+                          activeTab={this.state.horizontalTabs}
+                        >
+                          <TabPane tabId="home" role="tabpanel">
+                            <p>
+                              Larger, yet dramatically thinner. More powerful,
+                              but remarkably power efficient. With a smooth
+                              metal surface that seamlessly meets the new Retina
+                              HD display.
+                            </p>
+                          </TabPane>
+                          <TabPane tabId="profile" role="tabpanel">
+                            <p>Here is your profile.</p>
+                          </TabPane>
+                          <TabPane tabId="messages" role="tabpanel">
+                            <p>Here are your messages.</p>
+                          </TabPane>
+                        </TabContent>
+                      </CardBody>
+                    </Card>
+                  </Col>
                 </CardHeader>
-                <CardBody>
+                <CardBody className="report">
                   <ReactTable
                     data={this.state.data}
                     filterable
                     columns={[
                       {
-                        Header: "Name",
+                        Header: "ชื่อ",
                         accessor: "name"
                       },
                       {
-                        Header: "Position",
+                        Header: "เวลาเข้างาน",
                         accessor: "position"
                       },
                       {
-                        Header: "Office",
+                        Header: "เวลาออกงาน",
                         accessor: "office"
                       },
                       {
-                        Header: "Age",
+                        Header: "ทำงานนอกสถานที่",
                         accessor: "age"
                       },
                       {
-                        Header: "Actions",
-                        accessor: "actions",
-                        sortable: false,
-                        filterable: false
+                        Header: "ลางาน",
+                        accessor: "age"
+                      },
+                      {
+                        Header: "ระยะเวลาทำงาน ณ  ตอนนี้",
+                        accessor: "actions"
                       }
                     ]}
                     defaultPageSize={10}
-                    showPaginationTop
-                    showPaginationBottom={false}
+                    showPaginationTop={false}
+                    showPaginationBottom
                     /*
                       You can choose between primary-pagination, info-pagination, success-pagination, warning-pagination, danger-pagination or none - which will make the pagination buttons gray
                     */
