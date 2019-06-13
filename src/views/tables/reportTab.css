@@ -1,0 +1,21 @@
+div.card-bodytab.card-body{
+    padding-bottom:0;
+    padding-top: 0;
+    padding-left: 0;
+    float: left;
+}
+div.cardTable{
+    margin-bottom: 0;
+}
+div.card-bodyTable{
+    padding-top:0;
+}
+div.nav-tabs-navigation{
+    margin-bottom:2px ;
+}
+div.card-body.report{
+    padding-top:0;
+}
+div.col-md-6Table{
+    padding-left: 0;
+}

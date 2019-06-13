@@ -24,6 +24,7 @@ import ValidationForms from "./views/forms/ValidationForms.jsx";
 import VectorMap from "./views/maps/VectorMap.jsx";
 import Widgets from "./views/Widgets.jsx";
 import Wizard from "./views/forms/Wizard.jsx";
+import Report from "./views/Report.jsx"
 
 const routes = [
   {
@@ -35,7 +36,7 @@ const routes = [
   },
   {
     collapse: true,
-    name: "Pages",
+    name: "Out of office",
     icon: "nc-icon nc-book-bookmark",
     state: "pagesCollapse",
     views: [
@@ -78,7 +79,7 @@ const routes = [
   },
   {
     collapse: true,
-    name: "Components",
+    name: "Track",
     icon: "nc-icon nc-layout-11",
     state: "componentsCollapse",
     views: [
@@ -134,44 +135,15 @@ const routes = [
     ]
   },
   {
-    collapse: true,
-    name: "Forms",
+    name: "Report",
     icon: "nc-icon nc-ruler-pencil",
-    state: "formsCollapse",
-    views: [
-      {
-        path: "/regular-forms",
-        name: "Regular Forms",
-        mini: "RF",
-        component: RegularForms,
-        layout: "/admin"
-      },
-      {
-        path: "/extended-forms",
-        name: "Extended Forms",
-        mini: "EF",
-        component: ExtendedForms,
-        layout: "/admin"
-      },
-      {
-        path: "/validation-forms",
-        name: "Validation Forms",
-        mini: "VF",
-        component: ValidationForms,
-        layout: "/admin"
-      },
-      {
-        path: "/wizard",
-        name: "Wizard",
-        mini: "W",
-        component: Wizard,
-        layout: "/admin"
-      }
-    ]
+    path:"/report",
+    component:Report,
+    layout:"/admin"    
   },
   {
     collapse: true,
-    name: "Tables",
+    name: "User management",
     icon: "nc-icon nc-single-copy-04",
     state: "tablesCollapse",
     views: [
@@ -200,7 +172,7 @@ const routes = [
   },
   {
     collapse: true,
-    name: "Maps",
+    name: "Help center",
     icon: "nc-icon nc-pin-3",
     state: "mapsCollapse",
     views: [
@@ -229,12 +201,12 @@ const routes = [
   },
   {
     path: "/widgets",
-    name: "Widgets",
+    name: "Setting",
     icon: "nc-icon nc-box",
     component: Widgets,
     layout: "/admin"
   },
-  {
+  /*{
     path: "/charts",
     name: "Charts",
     icon: "nc-icon nc-chart-bar-32",
@@ -247,7 +219,7 @@ const routes = [
     icon: "nc-icon nc-calendar-60",
     component: Calendar,
     layout: "/admin"
-  }
+  }*/
 ];
 
 export default routes;
