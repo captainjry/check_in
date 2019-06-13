@@ -161,14 +161,14 @@ class Sidebar extends React.Component {
             <div className="info">
               <a
                 href="#pablo"
-                data-toggle="collapse"
+               data-toggle="collapse"
                 aria-expanded={this.state.openAvatar}
                 onClick={() =>
                   this.setState({ openAvatar: !this.state.openAvatar })
                 }
               >
                 <span>
-                  Chet Faker
+                  Chet Fakasasser
                   <b className="caret" />
                 </span>
               </a>
