@@ -10,7 +10,6 @@ import TagsInput from "react-tagsinput";
 import ReactDatetime from "react-datetime";
 import moment from "moment";
 
-
 // reactstrap components
 import {
   Collapse,
@@ -64,41 +63,48 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      singleSelect: { value: 2, label: "January"},
+    this.state = {
+      singleSelect: { value: 2, label: "January" },
       data: null,
       collapse: false,
       collapse2: false,
       optionYear: [],
       now: "",
-      year_act: "",  
-      optionMonth: ["January","February","March","April","May","June","July","August","September","October","November","December"],
-  
-
+      year_act: "",
+      optionMonth: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
     };
   }
-  
-  
-  
+
   componentWillMount() {
     let now = new Date();
     let year = now.getFullYear();
-    
-    this.setState({ 
+
+    this.setState({
       year_province: year,
       year_month: year,
       year_month_users: year
     });
-
   }
-  handleStartDate = (current) => {
+  handleStartDate = current => {
     var format = "YYYY-MM-DD";
-    console.log(current)
-    let date_format =moment(current, format).format(format)
-  }
+    console.log(current);
+    let date_format = moment(current, format).format(format);
+  };
   componentDidMount() {
     this.OptionYear();
-
   }
   OptionYear = () => {
     let now = new Date();
@@ -114,15 +120,15 @@ class Dashboard extends React.Component {
       optionYear.push(i);
     }
 
-    this.setState({ optionYear: optionYear, year_crop: thisYear })
-  }
+    this.setState({ optionYear: optionYear, year_crop: thisYear });
+  };
   toggle = () => {
     this.setState(state => ({ collapse: !state.collapse }));
-  }
+  };
 
   toggle2 = () => {
     this.setState(state => ({ collapse2: !state.collapse2 }));
-  }
+  };
   render() {
     return (
       <>
@@ -194,7 +200,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-bus-front-12 text-warning4" />                      
+                        <i className="nc-icon nc-bus-front-12 text-warning4" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -214,11 +220,11 @@ class Dashboard extends React.Component {
               <Card>
                 <CardHeader>
                   <Row>
-                    <Col lg='5'>
+                    <Col lg="5">
                       <div className="numbersD">แสดงเวลาเข้างาน</div>
                     </Col>
-                    <Col lg = '3'>
-                      <div style={{display: 'inline-block'}}>
+                    <Col lg="3">
+                      <div style={{ display: "inline-block" }}>
                         <Input
                           className="search"
                           defaultValue=""
@@ -227,25 +233,28 @@ class Dashboard extends React.Component {
                         />
                       </div>
                     </Col>
-                    <Col lg='1'>
-                      <div className="DCbutton" style={{display: 'inline-block'}}>
+                    <Col lg="1">
+                      <div
+                        className="DCbutton"
+                        style={{ display: "inline-block" }}
+                      >
                         <Button className="btn-round btn-icon" color="primary">
                           <i className="nc-icon nc-calendar-60" />
                         </Button>
                       </div>
-                      </Col>
-                      <Col lg='3'>
-                        <div className="datepicker">
+                    </Col>
+                    <Col lg="3">
+                      <div className="datepicker">
                         <ReactDatetime
                           inputProps={{
                             className: "form-control",
-                            placeholder: "Date Picker Here",
+                            placeholder: "Date Picker Here"
                           }}
-                          onChange={(current) => this.handleStartDate(current)}
+                          onChange={current => this.handleStartDate(current)}
                           timeFormat={false}
                         />
-                        </div>
-                      </Col>                      
+                      </div>
+                    </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
@@ -394,133 +403,129 @@ class Dashboard extends React.Component {
                     <Col sm="7">
                       <div className="numbers pull-left">หมายเหตุ</div>
                     </Col>
-
                   </Row>
                 </CardHeader>
                 <CardBody className="RcarddB">
                   <div>
                     <Button
-                    className="button"
+                      className="button"
                       onClick={this.toggle}
                       style={{ marginBottom: "1rem" }}
                     >
                       ไปทำงานนอกสถานที่
                     </Button>
                     <Collapse isOpen={this.state.collapse}>
-                        <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
-
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
                     </Collapse>
                   </div>
 
                   <div>
                     <Button
-                    className="button2"
+                      className="button2"
                       onClick={this.toggle2}
                       style={{ marginBottom: "1rem" }}
                     >
                       ลาป่วย
                     </Button>
                     <Collapse isOpen={this.state.collapse2}>
-                      
-                        <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                    <Col md="4" xs="5">
-                    <img 
-                        alt="..."
-                        className="img-raisedc"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                    />
-                    </Col>
-                    <Col md="8" xs="5">
-                    <div className="ss">
-                        <p className="card-categoryR">Dakota Rice</p>
-                        <CardTitle tag="ppR">10:00-12:00</CardTitle>
-                        <p />
-                      </div>
-                      </Col>
-                    </Row>
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col md="4" xs="5">
+                          <img
+                            alt="..."
+                            className="img-raisedc"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </Col>
+                        <Col md="8" xs="5">
+                          <div className="ss">
+                            <p className="card-categoryR">Dakota Rice</p>
+                            <CardTitle tag="ppR">10:00-12:00</CardTitle>
+                            <p />
+                          </div>
+                        </Col>
+                      </Row>
                     </Collapse>
                   </div>
                 </CardBody>
-
               </Card>
             </Col>
           </Row>
@@ -531,39 +536,38 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <CardTitle>สรุปการทำงานเดือนนี้</CardTitle>
                   <p className="card-category">ทั้งหมด 19 คน</p>
-                  <hr/>
-
+                  <hr />
                 </CardHeader>
                 <CardBody className="Dchart">
-                <Row>
-                  <Col lg="7">
-                  <Doughnut
-                    data={chartExample5.data}
-                    options={chartExample5.options}
-                    className="ct-chart ct-perfect-fourth"
-                    height={300}
-                    width={456}
-                  />
-                  </Col>
-                  <Col lg="5">
-                     <div className="legend">
-                    <i className="fa fa-circle text-info1" />
-                    มาสาย   15 ครั้ง   
-                  </div>
-                  <div className="legend">
-                    <i className="fa fa-circle text-info2" />
-                    ไม่เข้างาน 15 ครั้ง
-                  </div>
-                  <div className="legend">
-                    <i className="fa fa-circle text-info3" />
-                    ลางาน   15 ครั้ง
-                  </div>
-                  </Col>
+                  <Row>
+                    <Col lg="7">
+                      <Doughnut
+                        data={chartExample5.data}
+                        options={chartExample5.options}
+                        className="ct-chart ct-perfect-fourth"
+                        height={300}
+                        width={456}
+                      />
+                    </Col>
+                    <Col lg="5">
+                      <div className="legend">
+                        <i className="fa fa-circle text-info1" />
+                        มาสาย 15 ครั้ง
+                      </div>
+                      <div className="legend">
+                        <i className="fa fa-circle text-info2" />
+                        ไม่เข้างาน 15 ครั้ง
+                      </div>
+                      <div className="legend">
+                        <i className="fa fa-circle text-info3" />
+                        ลางาน 15 ครั้ง
+                      </div>
+                    </Col>
                   </Row>
                 </CardBody>
                 <CardFooter>
                   <hr />
-                  <div className="showmore"x>
+                  <div className="showmore" x>
                     ข้อมูลเพิ่มเติม
                   </div>
                 </CardFooter>
@@ -573,64 +577,53 @@ class Dashboard extends React.Component {
             <Col md="8">
               <Card>
                 <CardHeader>
-                <Row>
+                  <Row>
                     <Col lg="7" md="6">
                       <CardTitle tag="h4">ชั่วโมงการทำงานเดือนนี้</CardTitle>
-                      </Col>
-                        <Col lg="3" md="6" sm="3">
-                        <FormGroup style={{width: '150px'}}>
-                          <Input 
-                            type="select" 
-                            name="select" 
-                            id="exampleSelectYearUsersMonth" 
-                            className="PromptFont" 
-                            placeholder="mothly" 
-                            //value={this.state.year_month_users}
-                            //onChange={this.handleMonthUsers_year}
-                          >
-                            { this.state.optionMonth.map((item, key) => {
-                                return (
-                                  <option value={item}>{item}</option>
-                                )
-                              })
-                            }
-                              </Input>
-                              </FormGroup>
-  
-                        </Col>
-                        <Col lg="2" md="6" sm="3">
-                        <FormGroup style={{width: '100px'}}>
-                          <Input 
-                            type="select" 
-                            name="select" 
-                            id="exampleSelectYearUsersMonth" 
-                            className="PromptFont" 
-                            placeholder="yearly" 
-                            //value={this.state.year_month_users}
-                            //onChange={this.handleMonthUsers_year}
-                          >
-                            { this.state.optionYear.map((item, key) => {
-                                return (
-                                  <option value={item}>{item}</option>
-                                )
-                              })
-                            }
-                              </Input>
-                              </FormGroup>
-
-
                     </Col>
-                    </Row>
-                
+                    <Col lg="3" md="6" sm="3">
+                      <FormGroup style={{ width: "150px" }}>
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelectYearUsersMonth"
+                          className="PromptFont"
+                          placeholder="mothly"
+                          //value={this.state.year_month_users}
+                          //onChange={this.handleMonthUsers_year}
+                        >
+                          {this.state.optionMonth.map((item, key) => {
+                            return <option value={item}>{item}</option>;
+                          })}
+                        </Input>
+                      </FormGroup>
+                    </Col>
+                    <Col lg="2" md="6" sm="3">
+                      <FormGroup style={{ width: "100px" }}>
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelectYearUsersMonth"
+                          className="PromptFont"
+                          placeholder="yearly"
+                          //value={this.state.year_month_users}
+                          //onChange={this.handleMonthUsers_year}
+                        >
+                          {this.state.optionYear.map((item, key) => {
+                            return <option value={item}>{item}</option>;
+                          })}
+                        </Input>
+                      </FormGroup>
+                    </Col>
+                  </Row>
                 </CardHeader>
                 <CardBody>
-                <Bar
+                  <Bar
                     data={chartExample10.data}
                     options={chartExample10.options}
                   />
                 </CardBody>
-                <CardFooter>
-                </CardFooter>
+                <CardFooter />
               </Card>
             </Col>
           </Row>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 778.88 328.62">
+  <title>f5</title>
+  <g id="base">
+    <polygon points="2.5 2.5 776.38 2.5 776.38 181.28 729.4 181.28 729.4 326.12 110.05 326.12 110.05 179.19 42.92 179.19 42.92 143.18 2.5 143.18 2.5 2.5" style="fill: #bfbfc1;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 5px"/>
+  </g>
+  <g id="b2_floor5">
+    <rect x="544.6" y="2.5" width="191.85" height="176" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="354.67" y="76.31" width="38.52" height="65.99" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="393.19 2.5 393.19 76.31 354.67 76.31 354.67 142.3 43.69 142.3 43.69 2.5 393.19 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <g>
+      <g>
+        <rect x="433.35" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="443.35" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="452.78" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="462.78" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+      </g>
+      <polygon points="508.49 106.8 508.49 126.75 461.43 106.8 508.49 106.8" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+      <g>
+        <rect x="473.2" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="483.2" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="492.63" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="502.63" y="70.13" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+      </g>
+    </g>
+    <rect x="426.68" y="2.2" width="113.01" height="61.53" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+  </g>
+</svg>
