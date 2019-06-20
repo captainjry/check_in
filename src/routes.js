@@ -23,6 +23,10 @@ import UserProfile from "./views/pages/UserProfile.jsx";
 import ValidationForms from "./views/forms/ValidationForms.jsx";
 import VectorMap from "./views/maps/VectorMap.jsx";
 import Widgets from "./views/Widgets.jsx";
+import Usermanagement from "./views/Usermanagement.jsx";
+import Setting from "./views/Setting.jsx";
+import Test from "./views/Test.jsx";
+
 import Wizard from "./views/forms/Wizard.jsx";
 import Report from "./views/Report.jsx"
 
@@ -142,33 +146,11 @@ const routes = [
     layout:"/admin"    
   },
   {
-    collapse: true,
+    path: "/usermanagement",
     name: "User management",
     icon: "nc-icon nc-single-copy-04",
-    state: "tablesCollapse",
-    views: [
-      {
-        path: "/regular-tables",
-        name: "Regular Tables",
-        mini: "RT",
-        component: RegularTables,
-        layout: "/admin"
-      },
-      {
-        path: "/extended-tables",
-        name: "Extended Tables",
-        mini: "ET",
-        component: ExtendedTables,
-        layout: "/admin"
-      },
-      {
-        path: "/react-tables",
-        name: "React Tables",
-        mini: "RT",
-        component: ReactTables,
-        layout: "/admin"
-      }
-    ]
+    component:Usermanagement,
+    layout: "/admin"
   },
   {
     collapse: true,
@@ -200,12 +182,19 @@ const routes = [
     ]
   },
   {
+    path: "/setting",
+    name: "Setting",
+    icon: "nc-icon nc-box",
+    component: Setting,
+    layout: "/admin"
+  },
+  /*{
     path: "/widgets",
     name: "Setting",
     icon: "nc-icon nc-box",
     component: Widgets,
     layout: "/admin"
-  },
+  },*/
   /*{
     path: "/charts",
     name: "Charts",
