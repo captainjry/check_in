@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 779.11 329.62">
+  <title>f1</title>
+  <g id="base">
+    <polygon points="2.73 3.5 776.61 3.5 776.61 182.28 729.63 182.28 729.63 327.12 110.28 327.12 110.28 180.19 43.15 180.19 43.15 144.18 2.73 144.18 2.73 3.5" style="fill: #bfbfc1;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 5px"/>
+  </g>
+  <g id="b2_floor1">
+    <polygon points="2.5 2.5 776.38 2.5 776.38 181.28 729.4 181.28 729.4 326.12 110.05 326.12 110.05 179.2 42.92 179.2 42.92 143.18 2.5 143.18 2.5 2.5" style="fill: #bfbfc1;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 5px"/>
+    <rect x="94.44" y="2.5" width="146.57" height="138.82" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="2.71" y="2.5" width="91.73" height="138.82" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="581.32 2.5 736.89 2.5 736.89 143.72 620.95 143.72 620.95 37.73 581.32 37.73 581.32 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="241.01 2.5 342.47 2.5 342.18 51.5 316.2 51.5 316.2 141.32 241.01 141.32 241.01 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="316.2 51.5 342.18 51.5 350.69 60.01 350.69 141.32 316.2 141.32 316.2 51.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="350.69" y="75.76" width="38.26" height="65.55" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="425.16 2.5 538.51 2.5 538.51 73.36 425.16 72.97 425.16 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="538.51 2.5 581.32 2.5 581.32 37.73 620.95 37.73 620.95 143.72 538.51 143.72 538.51 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="437.06 73.36 537.99 72.97 537.99 143.72 437.32 143.72 437.06 73.36" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="142.29" y="196.87" width="34.47" height="97.9" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="176.77 196.87 276.56 196.87 276.56 241.13 340.02 241.13 340.02 309.4 243.5 309.4 243.5 294.77 176.77 294.77 176.77 196.87" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="276.56" y="196.87" width="63.46" height="44.25" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="340.02" y="196.87" width="97.3" height="112.52" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="437.32 196.87 637.17 196.87 637.17 297.13 534.32 297.13 534.32 309.4 437.32 309.4 437.32 196.87" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="637.17" y="196.87" width="63.44" height="52.24" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="637.17" y="249.12" width="63.44" height="48.01" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="545.33" y="297.23" width="91.84" height="28.89" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+  </g>
+</svg>

@@ -1,6 +1,9 @@
 import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import "./tables/reportTab.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import ReportTable from "./ReportTable";
+import ReportGraph from "./ReportGraph";
 
 import {
   Button,
@@ -27,14 +30,87 @@ import {
 
 import "./Report.css";
 
-const products = [
+// Mock Data
+const productsDay = [
   {
     name: "asd",
-    price: 123
+    timeAttend: "10.45",
+    timeLeave: "19:45",
+    workOutside: "All day",
+    leave: "-",
+    duration: "8 ชั่วโมง  -  นาที",
+    data: [
+      {
+        graph: "",
+        timeAttend: "9:20",
+        late: 2,
+        workOutside: 4,
+        leave: 3,
+        duration: "- 1 ชั่วโมง 15 นาที"
+      }
+    ],
+    column: [
+      {
+        dataField: "summary",
+        text: "สรุปการทำงาน"
+      },
+      {
+        dataField: "week",
+        text: " "
+      },
+      {
+        dataField: "timeAttend",
+        text: "เข้าทำงาน"
+      },
+      {
+        dataField: "workOutside",
+        text: "ทำงานนอกสถานที่"
+      },
+      {
+        dataField: "leave",
+        text: "ลางาน"
+      },
+      {
+        dataField: "duration",
+        text: "ระยะเวลาทำงาน"
+      }
+    ]
   },
   {
     name: "asdd",
-    price: 1234
+    price: 1234,
+    data: [
+      {
+        graph: "",
+        timeAttend: "10:20",
+        late: 2,
+        workOutside: 4,
+        leave: 3,
+        duration: "- 3 ชั่วโมง 15 นาที"
+      }
+    ],
+    column: [
+      {
+        dataField: "name",
+        text: "ชื่อ"
+      },
+      {
+        dataField: "timeAttend",
+        text: "เข้าทำงาน"
+      },
+      {
+        dataField: "workOutside",
+        text: "ทำงานนอกสถานที่"
+      },
+      {
+        dataField: "leave",
+        text: "ลางาน"
+      },
+      {
+        dataField: "duration",
+        text: "ระยะเวลาทำงาน"
+      }
+    ]
   },
   {
     name: "as",
@@ -57,18 +133,22 @@ const products = [
     price: 1234
   },
   {
-    name: "asdd",
+    name: "AUTO ADD",
     price: 1234
   }
 ];
-const columns1 = [
+const columnsDay = [
   {
     dataField: "name",
     text: "ชื่อ"
   },
   {
     dataField: "timeAttend",
-    text: "เข้าทำงาน"
+    text: "เวลาเข้างาน"
+  },
+  {
+    dataField: "timeLeave",
+    text: "เวลาออกงาน"
   },
   {
     dataField: "workOutside",
@@ -80,134 +160,144 @@ const columns1 = [
   },
   {
     dataField: "duration",
-    text: "ระยะเวลาทำงาน"
+    text: "ระยะเวลาทำงาน ณ ตอนนี้"
   }
 ];
 const dataTime = [
   {
-    graph:"",
+    graph: "",
     timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที" },
-  {
-    graph:"",
-    timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"  },
-  {
-    graph:"",
-    timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"},
-  {
-    graph:"",
-    timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"},
-  {
-    graph:"",
-    timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที" },
-  {
-    graph:"",
-    timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   },
   {
-    graph:"",
+    graph: "",
     timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   },
   {
-    graph:"",
+    graph: "",
     timeAttend: "9:20",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "9:20",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "9:20",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "9:20",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "9:20",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "9:20",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   }
 ];
 const dataTime2 = [
   {
-    graph:"",
+    graph: "",
     timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที" },
-  {
-    graph:"",
-    timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"  },
-  {
-    graph:"",
-    timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"},
-  {
-    graph:"",
-    timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"},
-  {
-    graph:"",
-    timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที" },
-  {
-    graph:"",
-    timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   },
   {
-    graph:"",
+    graph: "",
     timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   },
   {
-    graph:"",
+    graph: "",
     timeAttend: "18.30",
-    late:2,
-    workOutside:4,
-    leave:3,
-    duration:"- 1 ชั่วโมง 15 นาที"
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "18.30",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "18.30",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "18.30",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "18.30",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
+  },
+  {
+    graph: "",
+    timeAttend: "18.30",
+    late: 2,
+    workOutside: 4,
+    leave: 3,
+    duration: "- 1 ชั่วโมง 15 นาที"
   }
 ];
-const columns2 = [
+const columnsWeek = [
   {
-    dataField: "graph",
+    dataField: "name",
     text: "สรุปการทำงาน"
   },
   {
@@ -231,24 +321,183 @@ const columns2 = [
     text: "ระยะเวลาทำงาน"
   }
 ];
-
-const expandRow = {
-  onlyOneExpanding: true,
-  renderer: row => (
-    <BootstrapTable
-      keyField="graph"
-      data={dataTime}
-      columns={columns2}
-      hover
-    />
-  )
-};
+const productsWeek = [
+  {
+    name: "map",
+    price: 123
+  },
+  {
+    name: "ball",
+    price: 1234
+  },
+  {
+    name: "eiei",
+    price: 1234
+  },
+  {
+    name: "a",
+    price: 1234
+  },
+  {
+    name: "add",
+    price: 1234
+  },
+  {
+    name: "ass",
+    price: 1234
+  },
+  {
+    name: "i",
+    price: 1234
+  },
+  {
+    name: "did",
+    price: 1234
+  }
+];
+const columnsMonth = [
+  {
+    dataField: "name",
+    text: "ชื่อ"
+  },
+  {
+    dataField: "timeAttend",
+    text: "เข้าทำงาน"
+  },
+  {
+    dataField: "workOutside",
+    text: "ทำงานนอกสถานที่"
+  },
+  {
+    dataField: "leave",
+    text: "ลางาน"
+  },
+  {
+    dataField: "duration",
+    text: "ระยะเวลาทำงาน"
+  }
+];
+const productsMonth = [
+  {
+    name: "how",
+    price: 123
+  },
+  {
+    name: "to",
+    price: 1234
+  },
+  {
+    name: "do",
+    price: 1234
+  },
+  {
+    name: "this",
+    price: 1234
+  },
+  {
+    name: "shit",
+    price: 1234
+  },
+  {
+    name: "you",
+    price: 1234
+  },
+  {
+    name: "asddq",
+    price: 1234
+  },
+  {
+    name: "asdd",
+    price: 1234
+  }
+];
+const columnsYear = [
+  {
+    dataField: "name",
+    text: "ชื่อ"
+  },
+  {
+    dataField: "timeAttend",
+    text: "เข้าทำงาน"
+  },
+  {
+    dataField: "workOutside",
+    text: "ทำงานนอกสถานที่"
+  },
+  {
+    dataField: "leave",
+    text: "ลางาน"
+  },
+  {
+    dataField: "duration",
+    text: "ระยะเวลาทำงาน"
+  }
+];
+const productsYear = [
+  {
+    name: "what",
+    price: 123
+  },
+  {
+    name: "am",
+    price: 1234
+  },
+  {
+    name: "I",
+    price: 1234
+  },
+  {
+    name: "doin",
+    price: 1234
+  },
+  {
+    name: "here",
+    price: 1234
+  },
+  {
+    name: "dafuq",
+    price: 1234
+  },
+  {
+    name: "we",
+    price: 1234
+  },
+  {
+    name: "ale",
+    price: 1234
+  }
+];
+const columns2 = [
+  {
+    dataField: "name",
+    text: "ชื่อ"
+  },
+  {
+    dataField: "timeAttend",
+    text: "เข้าทำงาน"
+  },
+  {
+    dataField: "workOutside",
+    text: "ทำงานนอกสถานที่"
+  },
+  {
+    dataField: "leave",
+    text: "ลางาน"
+  },
+  {
+    dataField: "duration",
+    text: "ระยะเวลาทำงาน"
+  }
+];
 
 class Report extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      horizontalTabs: "Day"
+      horizontalTabs: "Day",
+      products: productsDay,
+      columns: columnsDay,
+      showGraph: false
     };
   }
 
@@ -258,17 +507,25 @@ class Report extends React.Component {
         <div className="content">
           <div className="headWrap">
             <Row>
-              <Col lg="6" md="6" sm="6">
+              <Col lg="6" md="8" sm="10" xs="10">
                 <Row>
-                  <Col /*style={{maxWidth:27+'%'}}*/ lg="5" md="3" sm="6">
+                  <Col lg="5" md="5" sm="5" xs="5">
                     <h2 className="reportHeader ">Reporting</h2>
                   </Col>
-                  <Col /*style={{maxWidth:20+'%'}}*/ lg="4" md="3" sm="3">
-                    <Button className="" color="default">
-                      แสดงรูปแบบกราฟ
+                  <Col lg="4" md="4" sm="4" xs="4">
+                    <Button
+                      className=""
+                      color="default"
+                      onClick={() => {
+                        this.setState({ showGraph: !this.state.showGraph });
+                      }}
+                    >
+                      {this.state.showGraph === false
+                        ? "แสดงรูปแบบกราฟ"
+                        : "แสดงรูปแบบตาราง"}
                     </Button>
                   </Col>
-                  <Col /*style={{maxWidth:20+'%'}}*/ lg="3" md="3" sm="3">
+                  <Col lg="3" md="3" sm="3" xs="3">
                     <UncontrolledDropdown group>
                       <DropdownToggle caret color="default">
                         แสดงระบุเวลา
@@ -282,7 +539,7 @@ class Report extends React.Component {
                   </Col>
                 </Row>
               </Col>
-              <Col lg="6" md="6" sm="6">
+              <Col lg="6" md="4" sm="8" xs="8">
                 <Form className="pull-right">
                   <InputGroup className="no-border">
                     <Input
@@ -305,130 +562,144 @@ class Report extends React.Component {
               <Card>
                 <CardHeader>
                   <Col md="6" className="col-md-6Table">
-                    <Card className="cardTable">
-                      <CardBody className="card-bodytab card-bodyTable">
-                        <div className="nav-tabs-navigation">
-                          <div className="nav-tabs-wrapper">
-                            <Nav id="tabs" role="tablist" tabs>
-                              <NavItem>
-                                <NavLink
-                                  aria-expanded={
-                                    this.state.horizontalTabs === "Day"
-                                  }
-                                  data-toggle="tab"
-                                  href="#pablo"
-                                  role="tab"
-                                  className={
-                                    this.state.horizontalTabs === "Day"
-                                      ? "active"
-                                      : ""
-                                  }
-                                  onClick={() =>
-                                    this.setState({ horizontalTabs: "Day" })
-                                  }
-                                >
-                                  Day
-                                </NavLink>
-                              </NavItem>
-                              <NavItem>
-                                <NavLink
-                                  aria-expanded={
-                                    this.state.horizontalTabs === "Week"
-                                  }
-                                  data-toggle="tab"
-                                  href="#pablo"
-                                  role="tab"
-                                  className={
-                                    this.state.horizontalTabs === "Week"
-                                      ? "active"
-                                      : ""
-                                  }
-                                  onClick={() =>
-                                    this.setState({ horizontalTabs: "Week" })
-                                  }
-                                >
-                                  Week
-                                </NavLink>
-                              </NavItem>
-                              <NavItem>
-                                <NavLink
-                                  aria-expanded={
-                                    this.state.horizontalTabs === "Month"
-                                  }
-                                  data-toggle="tab"
-                                  href="#pablo"
-                                  role="tab"
-                                  className={
-                                    this.state.horizontalTabs === "Month"
-                                      ? "active"
-                                      : ""
-                                  }
-                                  onClick={() =>
-                                    this.setState({ horizontalTabs: "Month" })
-                                  }
-                                >
-                                  Month
-                                </NavLink>
-                              </NavItem>
-                              <NavItem>
-                                <NavLink
-                                  aria-expanded={
-                                    this.state.horizontalTabs === "Year"
-                                  }
-                                  data-toggle="tab"
-                                  href="#pablo"
-                                  role="tab"
-                                  className={
-                                    this.state.horizontalTabs === "Year"
-                                      ? "active"
-                                      : ""
-                                  }
-                                  onClick={() =>
-                                    this.setState({ horizontalTabs: "Year" })
-                                  }
-                                >
-                                  Year
-                                </NavLink>
-                              </NavItem>
-                            </Nav>
-                          </div>
-                        </div>
-                        <TabContent
-                          className="text-center"
-                          id="my-tab-content"
-                          activeTab={this.state.horizontalTabs}
-                        >
-                          <TabPane tabId="home" role="tabpanel">
-                            <p>
-                              Larger, yet dramatically thinner. More powerful,
-                              but remarkably power efficient. With a smooth
-                              metal surface that seamlessly meets the new Retina
-                              HD display.
-                            </p>
-                          </TabPane>
-                          <TabPane tabId="profile" role="tabpanel">
-                            <p>Here is your profile.</p>
-                          </TabPane>
-                          <TabPane tabId="messages" role="tabpanel">
-                            <p>Here are your messages.</p>
-                          </TabPane>
-                        </TabContent>
-                      </CardBody>
-                    </Card>
+                    {/* <Card className="cardTable">
+                      <CardBody className="card-bodytab card-bodyTable"> */}
+                    <div className="nav-tabs-navigation">
+                      <div className="nav-tabs-wrapper">
+                        <Nav id="tabs" role="tablist" tabs>
+                          <NavItem>
+                            <NavLink
+                              aria-expanded={
+                                this.state.horizontalTabs === "Day"
+                              }
+                              data-toggle="tab"
+                              href="#pablo"
+                              role="tab"
+                              className={
+                                this.state.horizontalTabs === "Day"
+                                  ? "active"
+                                  : ""
+                              }
+                              onClick={() =>
+                                this.setState({
+                                  horizontalTabs: "Day",
+                                  columns: columnsDay,
+                                  products: productsDay
+                                })
+                              }
+                            >
+                              Day
+                            </NavLink>
+                          </NavItem>
+                          <NavItem>
+                            <NavLink
+                              aria-expanded={
+                                this.state.horizontalTabs === "Week"
+                              }
+                              data-toggle="tab"
+                              href="#pablo"
+                              role="tab"
+                              className={
+                                this.state.horizontalTabs === "Week"
+                                  ? "active"
+                                  : ""
+                              }
+                              onClick={() =>
+                                this.setState({
+                                  horizontalTabs: "Week",
+                                  columns: columnsWeek,
+                                  products: productsWeek
+                                })
+                              }
+                            >
+                              Week
+                            </NavLink>
+                          </NavItem>
+                          <NavItem>
+                            <NavLink
+                              aria-expanded={
+                                this.state.horizontalTabs === "Month"
+                              }
+                              data-toggle="tab"
+                              href="#pablo"
+                              role="tab"
+                              className={
+                                this.state.horizontalTabs === "Month"
+                                  ? "active"
+                                  : ""
+                              }
+                              onClick={() =>
+                                this.setState({
+                                  horizontalTabs: "Month",
+                                  columns: columnsMonth,
+                                  products: productsMonth
+                                })
+                              }
+                            >
+                              Month
+                            </NavLink>
+                          </NavItem>
+                          <NavItem>
+                            <NavLink
+                              aria-expanded={
+                                this.state.horizontalTabs === "Year"
+                              }
+                              data-toggle="tab"
+                              href="#pablo"
+                              role="tab"
+                              className={
+                                this.state.horizontalTabs === "Year"
+                                  ? "active"
+                                  : ""
+                              }
+                              onClick={() =>
+                                this.setState({
+                                  horizontalTabs: "Year",
+                                  columns: columnsYear,
+                                  products: productsYear
+                                })
+                              }
+                            >
+                              Year
+                            </NavLink>
+                          </NavItem>
+                        </Nav>
+                      </div>
+                    </div>
+                    <TabContent
+                      className="text-center"
+                      id="my-tab-content"
+                      activeTab={this.state.horizontalTabs}
+                    >
+                      <TabPane tabId="Day" role="tabpanel">
+                        <p>Day</p>
+                      </TabPane>
+                      <TabPane tabId="Week" role="tabpanel">
+                        <p>Week</p>
+                      </TabPane>
+                      <TabPane tabId="Month" role="tabpanel">
+                        <p>Month</p>
+                      </TabPane>
+                      <TabPane tabId="Year" role="tabpanel">
+                        <p>Year</p>
+                      </TabPane>
+                    </TabContent>
+                    {/* </CardBody>
+                    </Card> */}
                   </Col>
                 </CardHeader>
                 <CardBody className="report">
-                  <BootstrapTable
-                    keyField="name"
-                    data={products}
-                    columns={columns1}
-                    expandRow={expandRow}
-                    hover
-                  />
+                  {this.state.showGraph === false && (
+                    <ReportTable
+                      stateColumns={this.state.columns}
+                      stateProducts={this.state.products}
+                    />
+                  )}
                 </CardBody>
               </Card>
             </Col>
           </Row>
+          {this.state.showGraph === true && <ReportGraph />}
         </div>
       </>
     );

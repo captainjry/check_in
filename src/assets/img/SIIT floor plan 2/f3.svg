@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 778.88 329.1">
+  <title>f3</title>
+  <g id="base">
+    <polygon points="2.5 2.98 776.38 2.98 776.38 181.76 729.4 181.76 729.4 326.6 110.05 326.6 110.05 179.68 42.92 179.68 42.92 143.66 2.5 143.66 2.5 2.98" style="fill: #bfbfc1;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 5px"/>
+  </g>
+  <g id="b3_floor3">
+    <rect x="42.73" y="2.15" width="244.17" height="137.63" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="42.73" y="140.43" width="110.2" height="36.17" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="109.73" y="175.59" width="128.32" height="148.77" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="238.05" y="192.9" width="49.87" height="49.1" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="287.15" y="192.98" width="49.87" height="49.1" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="433.69" y="192.98" width="100.75" height="49.1" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="433.69" y="242.88" width="100.75" height="49.1" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="535.05" y="193.05" width="96.8" height="130.68" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="238.05 242 272.33 242 272.33 257.17 287.67 257.17 287.67 292.87 276.21 292.87 276.21 307.56 238.05 307.56 238.05 242" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="272.33 242 337.01 242 337.01 292.87 287.67 292.87 287.67 257.17 272.33 257.17 272.33 242" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="286.93 57.46 337.26 57.46 337.26 2.5 286.9 2.5 286.93 57.46" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="547.84 178.05 547.84 141.94 534.44 141.94 534.44 1.5 774.64 1.5 774.64 178.05 547.84 178.05" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <g>
+      <g>
+        <rect x="433.35" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="443.35" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="452.78" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="462.78" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+      </g>
+      <polygon points="508.49 107.28 508.49 127.22 461.43 107.28 508.49 107.28" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+      <g>
+        <rect x="473.2" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="483.2" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="492.63" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+        <rect x="502.63" y="70.61" width="5.86" height="33.33" style="fill: #eaeaea;stroke: #eaeaea;stroke-miterlimit: 10"/>
+      </g>
+    </g>
+    <rect x="348.56" y="74.5" width="38.1" height="65.27" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <rect x="426.68" y="2.68" width="113.01" height="61.53" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <polygon points="337.26 2.5 386.66 2.5 386.66 76.67 348.56 76.67 348.56 139.78 286.9 139.78 286.9 56.46 337.26 56.46 337.26 2.5" style="fill: #eaeaea;stroke: #bfbfc1;stroke-miterlimit: 10;stroke-width: 3px"/>
+  </g>
+</svg>

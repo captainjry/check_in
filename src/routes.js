@@ -28,9 +28,10 @@ import Setting from "./views/Setting.jsx";
 import Test from "./views/Test.jsx";
 
 import Wizard from "./views/forms/Wizard.jsx";
-import Report from "./views/Report.jsx"
+import Report from "./views/Report.jsx";
+import Track from "./views/Track.jsx";
 
-const routes = [
+const routes = [  
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -82,68 +83,18 @@ const routes = [
     ]
   },
   {
-    collapse: true,
     name: "Track",
     icon: "nc-icon nc-layout-11",
-    state: "componentsCollapse",
-    views: [
-      {
-        path: "/buttons",
-        name: "Buttons",
-        mini: "B",
-        component: Buttons,
-        layout: "/admin"
-      },
-      {
-        path: "/grid-system",
-        name: "Grid System",
-        mini: "GS",
-        component: GridSystem,
-        layout: "/admin"
-      },
-      {
-        path: "/panels",
-        name: "Panels",
-        mini: "P",
-        component: Panels,
-        layout: "/admin"
-      },
-      {
-        path: "/sweet-alert",
-        name: "Sweet Alert",
-        mini: "SA",
-        component: SweetAlert,
-        layout: "/admin"
-      },
-      {
-        path: "/notifications",
-        name: "Notifications",
-        mini: "N",
-        component: Notifications,
-        layout: "/admin"
-      },
-      {
-        path: "/icons",
-        name: "Icons",
-        mini: "I",
-        component: Icons,
-        layout: "/admin"
-      },
-      {
-        path: "/typography",
-        name: "Typography",
-        mini: "T",
-        component: Typography,
-        layout: "/admin"
-      }
-    ]
+    path: "/track",
+    component: Track,
+    layout: "/admin"
   },
   {
     name: "Report",
     icon: "nc-icon nc-ruler-pencil",
-    path:"/report",
-    component:Report,
-    layout:"/admin"    
+    path: "/report",
+    component: Report,
+    layout: "/admin"
   },
   {
     path: "/usermanagement",
@@ -194,7 +145,11 @@ const routes = [
     icon: "nc-icon nc-box",
     component: Widgets,
     layout: "/admin"
+<<<<<<< HEAD
   },*/
+=======
+  }
+>>>>>>> 52f1500eae174862366a2fa56f55b4f655dc1789
   /*{
     path: "/charts",
     name: "Charts",
