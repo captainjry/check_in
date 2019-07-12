@@ -9,6 +9,8 @@ import { Component } from "react";
 import TagsInput from "react-tagsinput";
 import ReactDatetime from "react-datetime";
 import moment from "moment";
+import { getCurrentDate } from "./getdate";
+import axios from "axios";
 
 // reactstrap components
 import {
@@ -58,7 +60,10 @@ var mapData = {
   US: 2920
 };
 const yearOffset = 60;
-
+var yesterday = ReactDatetime.moment();
+var valid = function(current) {
+  return current.isBefore(yesterday);
+};
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -66,8 +71,10 @@ class Dashboard extends React.Component {
     this.state = {
       singleSelect: { value: 2, label: "January" },
       data: null,
+      late: 0,
       collapse: false,
       collapse2: false,
+      datatable: [],
       optionYear: [],
       now: "",
       year_act: "",
@@ -95,17 +102,25 @@ class Dashboard extends React.Component {
     this.setState({
       year_province: year,
       year_month: year,
-      year_month_users: year
+      year_month_users: year,
+      selectedValue: [],
+      date_format: getCurrentDate() 
     });
   }
   handleStartDate = current => {
     var format = "YYYY-MM-DD";
     console.log(current);
     let date_format = moment(current, format).format(format);
+    this.setState({ date_format: date_format });
+    this.worktime(date_format);
+    this.setState({ selectedValue: date_format });
   };
   componentDidMount() {
     this.OptionYear();
+    this.worktime(this.state.date_format);
+    this.late(this.state.date_format);
   }
+
   OptionYear = () => {
     let now = new Date();
 
@@ -129,6 +144,62 @@ class Dashboard extends React.Component {
   toggle2 = () => {
     this.setState(state => ({ collapse2: !state.collapse2 }));
   };
+
+  worktime = date_format => {
+    let startDate = { date: date_format };
+    axios
+      .post("http://192.168.16.50:3000/api/v1/worktime", startDate)
+      .then(res => {
+        const response = res.data.Data;
+        let datatale = [];
+
+        if (response.totalworktime === "No One Work Today!") {
+          datatale.push({
+            name: " "
+          });
+        } else {
+          response.map((item, key) => {
+            if (item.totalworktime.hours === undefined) {
+              item.totalworktime.hours = "0";
+            }
+            if (item.totalworktime.minutes === undefined) {
+              item.totalworktime.minutes = "0";
+            }
+            let now = moment(item.maxtime);
+            let min = moment(item.mintime);
+            let max = moment(item.mintime).add(9, "hours");
+            datatale.push({
+              name: item.person_firstname + " " + item.person_lastname,
+              duration:
+                item.totalworktime.hours +
+                " ชั่วโมง " +
+                item.totalworktime.minutes +
+                " นาที",
+              timenow: now.format("LTS"),
+              timeAttend: min.format("LTS"),
+              timeLeave: max.format("LTS")
+            });
+          });
+        }
+        this.setState({ datatable: datatale });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  late = date_format => {
+    let startDate = { date: date_format };
+    axios
+      .post("http://192.168.16.50:3000/api/v1/attenp", startDate)
+      .then(res => {
+        let countlate = res.Data.late
+        this.setState({ late: 1 });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };  
   render() {
     return (
       <>
@@ -185,7 +256,7 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category3">3คน</p>
+                        <p className="card-category3">{this.state.late} คน</p>
                         <CardTitle tag="pp">มาสาย</CardTitle>
                         <p />
                       </div>
@@ -246,12 +317,17 @@ class Dashboard extends React.Component {
                     <Col lg="3">
                       <div className="datepicker">
                         <ReactDatetime
+                          isValidDate={valid}
                           inputProps={{
                             className: "form-control",
                             placeholder: "Date Picker Here"
                           }}
+                          timeFormat={false}
                           onChange={current => this.handleStartDate(current)}
                           timeFormat={false}
+                          input={true}
+                          value={this.state.selectedValue}
+                          dateFormat={"YYYY-MM-DD"}
                         />
                       </div>
                     </Col>
@@ -270,118 +346,32 @@ class Dashboard extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
+                      {this.state.datatable.map((item, key) => {
+                        return (
+                          <tr>
+                            <td className="img-row">
+                              <div className="img-wrapper">
+                                <img
+                                  alt="..."
+                                  className="img-raised"
+                                  src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                                />
+                              </div>
+                            </td>
+                            <td>{item.name}</td>
+                            <td>{item.timeAttend}</td>
+                            <td>{item.timeLeave}</td>
+                            <td>{item.timenow}</td>
+                            <td>{item.duration}</td>
+                          </tr>
+                        );
+                      })}
+
+                      {/* <td>Dakota Rice</td>
                         <td>10:00</td>
                         <td>19:00</td>
                         <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
-                      <tr>
-                        <td className="img-row">
-                          <div className="img-wrapper">
-                            <img
-                              alt="..."
-                              className="img-raised"
-                              src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                            />
-                          </div>
-                        </td>
-                        <td>Dakota Rice</td>
-                        <td>10:00</td>
-                        <td>19:00</td>
-                        <td>15:20</td>
-                        <td>5 ชั่วโมง 32 นาที</td>
-                      </tr>
+                        <td>5 ชั่วโมง 32 นาที</td> */}
                     </tbody>
                   </Table>
                 </CardBody>

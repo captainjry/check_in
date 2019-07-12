@@ -24,8 +24,6 @@ import ValidationForms from "./views/forms/ValidationForms.jsx";
 import VectorMap from "./views/maps/VectorMap.jsx";
 import Widgets from "./views/Widgets.jsx";
 import Usermanagement from "./views/Usermanagement.jsx";
-import Setting from "./views/Setting.jsx";
-import Test from "./views/Test.jsx";
 
 import Wizard from "./views/forms/Wizard.jsx";
 import Report from "./views/Report.jsx";
@@ -133,10 +131,10 @@ const routes = [
     ]
   },
   {
-    path: "/setting",
+    path: "/vector-map",
     name: "Setting",
-    icon: "nc-icon nc-box",
-    component: Setting,
+    icon: "nc-icon nc-bank",
+    component: Dashboard,
     layout: "/admin"
   },
   /*{
@@ -145,11 +143,7 @@ const routes = [
     icon: "nc-icon nc-box",
     component: Widgets,
     layout: "/admin"
-<<<<<<< HEAD
   },*/
-=======
-  }
->>>>>>> 52f1500eae174862366a2fa56f55b4f655dc1789
   /*{
     path: "/charts",
     name: "Charts",

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  ButtonGroup,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -25,6 +26,8 @@ import {
   CardFooter,
   Table
 } from "reactstrap";
+import axios from "axios";
+import { getCurrentDate } from "./getdate";
 
 import {
   chartExample1,
@@ -36,9 +39,8 @@ import {
   chartExample7,
   chartExample10
 } from "../variables/charts.jsx";
-
+//date_format = {this.props.date_format}
 import { Line, Bar, Doughnut } from "react-chartjs-2";
-
 class ReportGraph extends React.Component {
   constructor(props) {
     super(props);
@@ -46,11 +48,14 @@ class ReportGraph extends React.Component {
     this.state = {
       singleSelect: { value: 2, label: "January" },
       data: null,
+      //date_format: this.props.date_format,
+      namelist: [],
       collapse: false,
       collapse2: false,
       optionYear: [],
       now: "",
       year_act: "",
+      //chartdata:[],
       optionMonth: [
         "January",
         "February",
@@ -67,7 +72,106 @@ class ReportGraph extends React.Component {
       ]
     };
   }
+
+  handleCilck() {
+    // this.setState({
+    //   chartdata:[0,0,0,0] 
+    // });
+    //this.props.chartdata=[0,0,0,0,0]
+    //alert("damn")
+  }
   render() {
+        
+    const chartReportDay1 = {
+      data: {
+        labels: [
+          "6:00-6:59",
+          "7:00-7:59",
+          "8:00-8:59",
+          "9:00-9:59",
+          "10:00-10:59",
+          "11:00-11:59",
+          "12:00-12:59",
+          "13:00-13:59",
+          "14:00-14:59",
+          "15:00-15:59",
+          "16:00-16:59",
+          "17:00-17:59",
+          "19:00-18:59",
+          "20:00-20:59",
+          "21:00-21:59"
+        ],
+        datasets: [
+          {
+            label: "Data",
+            borderColor: "#A3A1FB",
+            fill: true,
+            backgroundColor: "#A3A1FB",
+            hoverBorderColor: "#A3A1FB",
+            borderWidth: 5,
+            data: this.props.chartdata
+          }
+        ]
+      },
+      options: {
+        tooltips: {
+          tooltipFillColor: "rgba(0,0,0,0.5)",
+          tooltipFontFamily:
+            "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipFontSize: 14,
+          tooltipFontStyle: "normal",
+          tooltipFontColor: "#fff",
+          tooltipTitleFontFamily:
+            "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipTitleFontSize: 14,
+          tooltipTitleFontStyle: "bold",
+          tooltipTitleFontColor: "#fff",
+          tooltipYPadding: 6,
+          tooltipXPadding: 6,
+          tooltipCaretSize: 8,
+          tooltipCornerRadius: 6,
+          tooltipXOffset: 10
+        },
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "#9f9f9f",
+                fontStyle: "bold",
+                beginAtZero: true,
+                maxTicksLimit: 5,
+                padding: 20
+              },
+              gridLines: {
+                zeroLineColor: "transparent",
+                display: true,
+                drawBorder: false,
+                color: "#9f9f9f"
+              }
+            }
+          ],
+          xAxes: [
+            {
+              barPercentage: 0.4,
+              gridLines: {
+                zeroLineColor: "white",
+                display: false,
+                drawBorder: false,
+                color: "transparent"
+              },
+              ticks: {
+                padding: 20,
+                fontColor: "#9f9f9f",
+                fontStyle: "bold"
+              }
+            }
+          ]
+        }
+      }
+    };
     return (
       <Row>
         <Col lg="8">
@@ -83,8 +187,8 @@ class ReportGraph extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Bar
-                    data={chartExample10.data}
-                    options={chartExample10.options}
+                    data={chartReportDay1.data}
+                    options={chartReportDay1.options}
                   />
                 </CardBody>
                 <CardFooter />
@@ -115,69 +219,59 @@ class ReportGraph extends React.Component {
         <Col lg="4">
           <Card>
             <CardHeader>
-              <h4>ข้อมูลช่วงเวลา</h4>
+              <Row>
+                <Col lg="5">
+                  <h5>ข้อมูลช่วงเวลา</h5>
+                </Col>
+                <Col lg="7">
+                  <ButtonGroup>
+                    <Button
+                      className="btn-round"
+                      color="info"
+                      outline
+                      type="button"
+                    >
+                      ทั้งหมด
+                    </Button>
+                    <Button
+                      className="btn-round"
+                      color="info"
+                      outline
+                      type="button"
+                    >
+                      รายบุคคล
+                    </Button>
+                  </ButtonGroup>
+                </Col>
+              </Row>
             </CardHeader>
+
             <Table responsive>
               <thead className="thead-light">
                 <tr>
                   <th />
-                  <th>Name</th>
-                  <th>Country</th>
+                  <th>ชื่อ</th>
+                  <th>เวลาเข้างาน</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="img-row">
-                    <div className="img-wrapper">
-                      <img
-                        alt="..."
-                        className="img-raised"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </div>
-                  </td>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                </tr>
-                <tr>
-                  <td className="img-row">
-                    <div className="img-wrapper">
-                      <img
-                        alt="..."
-                        className="img-raised"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </div>
-                  </td>
-                  <td>Minerva Hooper</td>
-                  <td>Curaçao</td>
-                </tr>
-                <tr>
-                  <td className="img-row">
-                    <div className="img-wrapper">
-                      <img
-                        alt="..."
-                        className="img-raised"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </div>
-                  </td>
-                  <td>Minerva Hooper</td>
-                  <td>Curaçao</td>
-                </tr>
-                <tr>
-                  <td className="img-row">
-                    <div className="img-wrapper">
-                      <img
-                        alt="..."
-                        className="img-raised"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </div>
-                  </td>
-                  <td>Minerva Hooper</td>
-                  <td>Curaçao</td>
-                </tr>
+                {this.props.products.map((item, key) => {
+                  return (
+                    <tr id="1" onClick={this.handleCilck}>
+                      <td className="img-row">
+                        <div className="img-wrapper">
+                          <img
+                            alt="..."
+                            className="img-raised"
+                            src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                          />
+                        </div>
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{item.duration}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
           </Card>

@@ -1,5 +1,4 @@
 const Chart = require("chart.js");
-
 Chart.pluginService.register({
   beforeDraw: function(chart) {
     if (chart.config.options.elements.center) {
@@ -12,7 +11,7 @@ Chart.pluginService.register({
       var txt = centerConfig.text;
       var color = centerConfig.color || "#000";
       var sidePadding = centerConfig.sidePadding || 20;
-      var sidePaddingCalculated = sidePadding / 100 * (chart.innerRadius * 2);
+      var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
       //Start with a base font of 30px
       ctx.font = "30px " + fontStyle;
 
@@ -452,9 +451,9 @@ const chartExample5 = {
         label: "Emails",
         pointRadius: 0,
         pointHoverRadius: 0,
-        backgroundColor: ["#A3A0FB", "#FF7285","#4AD991"],
+        backgroundColor: ["#A3A0FB", "#FF7285", "#4AD991"],
         borderWidth: 0,
-        data: [30,40,30]
+        data: [30, 40, 30]
       }
     ]
   },
@@ -779,15 +778,7 @@ const chartExample10 = {
         backgroundColor: "#A3A1FB",
         hoverBorderColor: "#A3A1FB",
         borderWidth: 5,
-        data: [
-          100,
-          120,
-          80,
-          100,
-          90,
-          130,
-          110
-        ]
+        data: [100, 120, 80, 100, 90, 130, 110]
       }
     ]
   },
@@ -849,6 +840,100 @@ const chartExample10 = {
     }
   }
 };
+
+// #########################################
+// // // chart แสดงเวลาเข้างาน
+// #########################################
+
+// const chartReportDay1 = {
+//   data: {
+//     labels: [
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59",
+//       "6:00-6:59"
+//     ],
+//     datasets: [
+//       {
+//         label: "Data",
+//         borderColor: "#A3A1FB",
+//         fill: true,
+//         backgroundColor: "#A3A1FB",
+//         hoverBorderColor: "#A3A1FB",
+//         borderWidth: 5,
+//         data: [5, 6, 7, 5, 4, 2, 4, 1, 5, 6, 5,4,4,4,4]
+//       }
+//     ]
+//   },
+//   options: {
+//     tooltips: {
+//       tooltipFillColor: "rgba(0,0,0,0.5)",
+//       tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+//       tooltipFontSize: 14,
+//       tooltipFontStyle: "normal",
+//       tooltipFontColor: "#fff",
+//       tooltipTitleFontFamily:
+//         "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+//       tooltipTitleFontSize: 14,
+//       tooltipTitleFontStyle: "bold",
+//       tooltipTitleFontColor: "#fff",
+//       tooltipYPadding: 6,
+//       tooltipXPadding: 6,
+//       tooltipCaretSize: 8,
+//       tooltipCornerRadius: 6,
+//       tooltipXOffset: 10
+//     },
+//     legend: {
+//       display: false
+//     },
+//     scales: {
+//       yAxes: [
+//         {
+//           ticks: {
+//             fontColor: "#9f9f9f",
+//             fontStyle: "bold",
+//             beginAtZero: true,
+//             maxTicksLimit: 5,
+//             padding: 20
+//           },
+//           gridLines: {
+//             zeroLineColor: "transparent",
+//             display: true,
+//             drawBorder: false,
+//             color: "#9f9f9f"
+//           }
+//         }
+//       ],
+//       xAxes: [
+//         {
+//           barPercentage: 0.4,
+//           gridLines: {
+//             zeroLineColor: "white",
+//             display: false,
+//             drawBorder: false,
+//             color: "transparent"
+//           },
+//           ticks: {
+//             padding: 20,
+//             fontColor: "#9f9f9f",
+//             fontStyle: "bold"
+//           }
+//         }
+//       ]
+//     }
+//   }
+// };
 
 // #########################################
 // // // used inside src/views/Charts.jsx
@@ -1015,5 +1100,5 @@ module.exports = {
   // used for Charts view
   chartExample11,
   // used for Charts view
-  chartExample12
+  chartExample12,
 };
