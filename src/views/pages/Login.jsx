@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // reactstrap components
 import {
@@ -17,19 +17,19 @@ import {
   Container,
   Col,
   Row
-} from "reactstrap";
+} from 'reactstrap';
 
 class Login extends React.Component {
   componentDidMount() {
-    document.body.classList.toggle("login-page");
+    document.body.classList.toggle('login-page');
   }
   componentWillUnmount() {
-    document.body.classList.toggle("login-page");
+    document.body.classList.toggle('login-page');
   }
   render() {
     return (
-      <div className="login-page">
-        <Container>
+      <div className="login-page" style={{backgroundColor:"red"}}>
+        {/* <Container>
           <Row>
             <Col className="ml-auto mr-auto" lg="4" md="6">
               <Form action="" className="form" method="">
@@ -90,14 +90,23 @@ class Login extends React.Component {
               </Form>
             </Col>
           </Row>
-        </Container>
-        <div
+        </Container> */}
+        
+        {/* <div
           className="full-page-background"
           style={{
             backgroundImage: `url(${require("../../assets/img/bg/fabio-mangione.jpg")})`
           }}
-        />
-      </div>
+        />*/}
+        <Row>
+          <Col lg="6" md="6" sm="6" xs="6" >
+              tdst fd
+          </Col>
+          <Col lg="6" md="6" sm="6" xs="6">
+            <p> ipsum, dolor sit amet consectetur adipisicing elit. Ea, ipsa!</p>
+          </Col>
+        </Row>
+      </div> 
     );
   }
 }

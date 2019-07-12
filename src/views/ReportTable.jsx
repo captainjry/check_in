@@ -27,7 +27,7 @@ class ReportTable extends React.Component {
         columns={this.props.stateColumns}
         expandRow={expandRow}
         bootstrap4
-        hover
+      hover
       />
     );
   }

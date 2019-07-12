@@ -12,7 +12,7 @@
 
 /*jshint browser: true, strict: true, undef: true, unused: true */
 /*global define: false, module: false */
-
+console.log('B');
 ( function( window ) {
 
 'use strict';

@@ -1,9 +1,9 @@
-import React from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import "./tables/reportTab.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-import ReportTable from "./ReportTable";
-import ReportGraph from "./ReportGraph";
+import React from 'react';
+import BootstrapTable from 'react-bootstrap-table-next';
+import './tables/reportTab.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import ReportTable from './ReportTable';
+import ReportGraph from './ReportGraph';
 
 import {
   Button,
@@ -26,467 +26,467 @@ import {
   NavLink,
   TabPane,
   TabContent
-} from "reactstrap";
+} from 'reactstrap';
 
-import "./Report.css";
+import './Report.css';
 
 // Mock Data
 const productsDay = [
   {
-    name: "asd",
-    timeAttend: "10.45",
-    timeLeave: "19:45",
-    workOutside: "All day",
-    leave: "-",
-    duration: "8 ชั่วโมง  -  นาที",
+    name: 'asd',
+    timeAttend: '10.45',
+    timeLeave: '19:45',
+    workOutside: 'All day',
+    leave: '-',
+    duration: '8 ชั่วโมง  -  นาที',
     data: [
       {
-        graph: "",
-        timeAttend: "9:20",
+        graph: '',
+        timeAttend: '9:20',
         late: 2,
         workOutside: 4,
         leave: 3,
-        duration: "- 1 ชั่วโมง 15 นาที"
+        duration: '- 1 ชั่วโมง 15 นาที'
       }
     ],
     column: [
       {
-        dataField: "summary",
-        text: "สรุปการทำงาน"
+        dataField: 'summary',
+        text: 'สรุปการทำงาน'
       },
       {
-        dataField: "week",
-        text: " "
+        dataField: 'week',
+        text: ' '
       },
       {
-        dataField: "timeAttend",
-        text: "เข้าทำงาน"
+        dataField: 'timeAttend',
+        text: 'เข้าทำงาน'
       },
       {
-        dataField: "workOutside",
-        text: "ทำงานนอกสถานที่"
+        dataField: 'workOutside',
+        text: 'ทำงานนอกสถานที่'
       },
       {
-        dataField: "leave",
-        text: "ลางาน"
+        dataField: 'leave',
+        text: 'ลางาน'
       },
       {
-        dataField: "duration",
-        text: "ระยะเวลาทำงาน"
+        dataField: 'duration',
+        text: 'ระยะเวลาทำงาน'
       }
     ]
   },
   {
-    name: "asdd",
+    name: 'asdd',
     price: 1234,
     data: [
       {
-        graph: "",
-        timeAttend: "10:20",
+        graph: '',
+        timeAttend: '10:20',
         late: 2,
         workOutside: 4,
         leave: 3,
-        duration: "- 3 ชั่วโมง 15 นาที"
+        duration: '- 3 ชั่วโมง 15 นาที'
       }
     ],
     column: [
       {
-        dataField: "name",
-        text: "ชื่อ"
+        dataField: 'name',
+        text: 'ชื่อ'
       },
       {
-        dataField: "timeAttend",
-        text: "เข้าทำงาน"
+        dataField: 'timeAttend',
+        text: 'เข้าทำงาน'
       },
       {
-        dataField: "workOutside",
-        text: "ทำงานนอกสถานที่"
+        dataField: 'workOutside',
+        text: 'ทำงานนอกสถานที่'
       },
       {
-        dataField: "leave",
-        text: "ลางาน"
+        dataField: 'leave',
+        text: 'ลางาน'
       },
       {
-        dataField: "duration",
-        text: "ระยะเวลาทำงาน"
+        dataField: 'duration',
+        text: 'ระยะเวลาทำงาน'
       }
     ]
   },
   {
-    name: "as",
+    name: 'as',
     price: 1234
   },
   {
-    name: "a",
+    name: 'a',
     price: 1234
   },
   {
-    name: "add",
+    name: 'add',
     price: 1234
   },
   {
-    name: "asdds",
+    name: 'asdds',
     price: 1234
   },
   {
-    name: "asddq",
+    name: 'asddq',
     price: 1234
   },
   {
-    name: "AUTO ADD",
+    name: 'AUTO ADD',
     price: 1234
   }
 ];
 const columnsDay = [
   {
-    dataField: "name",
-    text: "ชื่อ"
+    dataField: 'name',
+    text: 'ชื่อ'
   },
   {
-    dataField: "timeAttend",
-    text: "เวลาเข้างาน"
+    dataField: 'timeAttend',
+    text: 'เวลาเข้างาน'
   },
   {
-    dataField: "timeLeave",
-    text: "เวลาออกงาน"
+    dataField: 'timeLeave',
+    text: 'เวลาออกงาน'
   },
   {
-    dataField: "workOutside",
-    text: "ทำงานนอกสถานที่"
+    dataField: 'workOutside',
+    text: 'ทำงานนอกสถานที่'
   },
   {
-    dataField: "leave",
-    text: "ลางาน"
+    dataField: 'leave',
+    text: 'ลางาน'
   },
   {
-    dataField: "duration",
-    text: "ระยะเวลาทำงาน ณ ตอนนี้"
+    dataField: 'duration',
+    text: 'ระยะเวลาทำงาน ณ ตอนนี้'
   }
 ];
 const dataTime = [
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "9:20",
+    graph: '',
+    timeAttend: '9:20',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   }
 ];
 const dataTime2 = [
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   },
   {
-    graph: "",
-    timeAttend: "18.30",
+    graph: '',
+    timeAttend: '18.30',
     late: 2,
     workOutside: 4,
     leave: 3,
-    duration: "- 1 ชั่วโมง 15 นาที"
+    duration: '- 1 ชั่วโมง 15 นาที'
   }
 ];
 const columnsWeek = [
   {
-    dataField: "name",
-    text: "สรุปการทำงาน"
+    dataField: 'name',
+    text: 'สรุปการทำงาน'
   },
   {
-    dataField: "timeAttend",
-    text: "เข้าทำงาน"
+    dataField: 'timeAttend',
+    text: 'เข้าทำงาน'
   },
   {
-    dataField: "late",
-    text: "มาสาย"
+    dataField: 'late',
+    text: 'มาสาย'
   },
   {
-    dataField: "workOutside",
-    text: "ทำงานนอกสถานที่"
+    dataField: 'workOutside',
+    text: 'ทำงานนอกสถานที่'
   },
   {
-    dataField: "leave",
-    text: "ลางาน"
+    dataField: 'leave',
+    text: 'ลางาน'
   },
   {
-    dataField: "duration",
-    text: "ระยะเวลาทำงาน"
+    dataField: 'duration',
+    text: 'ระยะเวลาทำงาน'
   }
 ];
 const productsWeek = [
   {
-    name: "map",
+    name: 'map',
     price: 123
   },
   {
-    name: "ball",
+    name: 'ball',
     price: 1234
   },
   {
-    name: "eiei",
+    name: 'eiei',
     price: 1234
   },
   {
-    name: "a",
+    name: 'a',
     price: 1234
   },
   {
-    name: "add",
+    name: 'add',
     price: 1234
   },
   {
-    name: "ass",
+    name: 'ass',
     price: 1234
   },
   {
-    name: "i",
+    name: 'i',
     price: 1234
   },
   {
-    name: "did",
+    name: 'did',
     price: 1234
   }
 ];
 const columnsMonth = [
   {
-    dataField: "name",
-    text: "ชื่อ"
+    dataField: 'name',
+    text: 'ชื่อ'
   },
   {
-    dataField: "timeAttend",
-    text: "เข้าทำงาน"
+    dataField: 'timeAttend',
+    text: 'เข้าทำงาน'
   },
   {
-    dataField: "workOutside",
-    text: "ทำงานนอกสถานที่"
+    dataField: 'workOutside',
+    text: 'ทำงานนอกสถานที่'
   },
   {
-    dataField: "leave",
-    text: "ลางาน"
+    dataField: 'leave',
+    text: 'ลางาน'
   },
   {
-    dataField: "duration",
-    text: "ระยะเวลาทำงาน"
+    dataField: 'duration',
+    text: 'ระยะเวลาทำงาน'
   }
 ];
 const productsMonth = [
   {
-    name: "how",
+    name: 'how',
     price: 123
   },
   {
-    name: "to",
+    name: 'to',
     price: 1234
   },
   {
-    name: "do",
+    name: 'do',
     price: 1234
   },
   {
-    name: "this",
+    name: 'this',
     price: 1234
   },
   {
-    name: "shit",
+    name: 'shit',
     price: 1234
   },
   {
-    name: "you",
+    name: 'you',
     price: 1234
   },
   {
-    name: "asddq",
+    name: 'asddq',
     price: 1234
   },
   {
-    name: "asdd",
+    name: 'asdd',
     price: 1234
   }
 ];
 const columnsYear = [
   {
-    dataField: "name",
-    text: "ชื่อ"
+    dataField: 'name',
+    text: 'ชื่อ'
   },
   {
-    dataField: "timeAttend",
-    text: "เข้าทำงาน"
+    dataField: 'timeAttend',
+    text: 'เข้าทำงาน'
   },
   {
-    dataField: "workOutside",
-    text: "ทำงานนอกสถานที่"
+    dataField: 'workOutside',
+    text: 'ทำงานนอกสถานที่'
   },
   {
-    dataField: "leave",
-    text: "ลางาน"
+    dataField: 'leave',
+    text: 'ลางาน'
   },
   {
-    dataField: "duration",
-    text: "ระยะเวลาทำงาน"
+    dataField: 'duration',
+    text: 'ระยะเวลาทำงาน'
   }
 ];
 const productsYear = [
   {
-    name: "what",
+    name: 'what',
     price: 123
   },
   {
-    name: "am",
+    name: 'am',
     price: 1234
   },
   {
-    name: "I",
+    name: 'I',
     price: 1234
   },
   {
-    name: "doin",
+    name: 'doin',
     price: 1234
   },
   {
-    name: "here",
+    name: 'here',
     price: 1234
   },
   {
-    name: "dafuq",
+    name: 'dafuq',
     price: 1234
   },
   {
-    name: "we",
+    name: 'we',
     price: 1234
   },
   {
-    name: "ale",
+    name: 'ale',
     price: 1234
   }
 ];
 const columns2 = [
   {
-    dataField: "name",
-    text: "ชื่อ"
+    dataField: 'name',
+    text: 'ชื่อ'
   },
   {
-    dataField: "timeAttend",
-    text: "เข้าทำงาน"
+    dataField: 'timeAttend',
+    text: 'เข้าทำงาน'
   },
   {
-    dataField: "workOutside",
-    text: "ทำงานนอกสถานที่"
+    dataField: 'workOutside',
+    text: 'ทำงานนอกสถานที่'
   },
   {
-    dataField: "leave",
-    text: "ลางาน"
+    dataField: 'leave',
+    text: 'ลางาน'
   },
   {
-    dataField: "duration",
-    text: "ระยะเวลาทำงาน"
+    dataField: 'duration',
+    text: 'ระยะเวลาทำงาน'
   }
 ];
 
@@ -494,7 +494,7 @@ class Report extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      horizontalTabs: "Day",
+      horizontalTabs: 'Day',
       products: productsDay,
       columns: columnsDay,
       showGraph: false
@@ -514,15 +514,14 @@ class Report extends React.Component {
                   </Col>
                   <Col lg="4" md="4" sm="4" xs="4">
                     <Button
-                      className=""
                       color="default"
                       onClick={() => {
                         this.setState({ showGraph: !this.state.showGraph });
                       }}
                     >
                       {this.state.showGraph === false
-                        ? "แสดงรูปแบบกราฟ"
-                        : "แสดงรูปแบบตาราง"}
+                        ? 'แสดงรูปแบบกราฟ'
+                        : 'แสดงรูปแบบตาราง'}
                     </Button>
                   </Col>
                   <Col lg="3" md="3" sm="3" xs="3">
@@ -570,19 +569,19 @@ class Report extends React.Component {
                           <NavItem>
                             <NavLink
                               aria-expanded={
-                                this.state.horizontalTabs === "Day"
+                                this.state.horizontalTabs === 'Day'
                               }
                               data-toggle="tab"
                               href="#pablo"
                               role="tab"
                               className={
-                                this.state.horizontalTabs === "Day"
-                                  ? "active"
-                                  : ""
+                                this.state.horizontalTabs === 'Day'
+                                  ? 'active'
+                                  : ''
                               }
                               onClick={() =>
                                 this.setState({
-                                  horizontalTabs: "Day",
+                                  horizontalTabs: 'Day',
                                   columns: columnsDay,
                                   products: productsDay
                                 })
@@ -594,19 +593,19 @@ class Report extends React.Component {
                           <NavItem>
                             <NavLink
                               aria-expanded={
-                                this.state.horizontalTabs === "Week"
+                                this.state.horizontalTabs === 'Week'
                               }
                               data-toggle="tab"
                               href="#pablo"
                               role="tab"
                               className={
-                                this.state.horizontalTabs === "Week"
-                                  ? "active"
-                                  : ""
+                                this.state.horizontalTabs === 'Week'
+                                  ? 'active'
+                                  : ''
                               }
                               onClick={() =>
                                 this.setState({
-                                  horizontalTabs: "Week",
+                                  horizontalTabs: 'Week',
                                   columns: columnsWeek,
                                   products: productsWeek
                                 })
@@ -618,19 +617,19 @@ class Report extends React.Component {
                           <NavItem>
                             <NavLink
                               aria-expanded={
-                                this.state.horizontalTabs === "Month"
+                                this.state.horizontalTabs === 'Month'
                               }
                               data-toggle="tab"
                               href="#pablo"
                               role="tab"
                               className={
-                                this.state.horizontalTabs === "Month"
-                                  ? "active"
-                                  : ""
+                                this.state.horizontalTabs === 'Month'
+                                  ? 'active'
+                                  : ''
                               }
                               onClick={() =>
                                 this.setState({
-                                  horizontalTabs: "Month",
+                                  horizontalTabs: 'Month',
                                   columns: columnsMonth,
                                   products: productsMonth
                                 })
@@ -642,19 +641,19 @@ class Report extends React.Component {
                           <NavItem>
                             <NavLink
                               aria-expanded={
-                                this.state.horizontalTabs === "Year"
+                                this.state.horizontalTabs === 'Year'
                               }
                               data-toggle="tab"
                               href="#pablo"
                               role="tab"
                               className={
-                                this.state.horizontalTabs === "Year"
-                                  ? "active"
-                                  : ""
+                                this.state.horizontalTabs === 'Year'
+                                  ? 'active'
+                                  : ''
                               }
                               onClick={() =>
                                 this.setState({
-                                  horizontalTabs: "Year",
+                                  horizontalTabs: 'Year',
                                   columns: columnsYear,
                                   products: productsYear
                                 })

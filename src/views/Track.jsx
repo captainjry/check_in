@@ -23,24 +23,22 @@ import {
   Table
 } from "reactstrap";
 
-import floor1 from "../assets/img/SIIT floor plan 2/f1.svg";
-import floor2 from "../assets/img/SIIT floor plan 2/f1.svg";
-import floor3 from "../assets/img/SIIT floor plan 2/f1.svg";
-import floor4 from "../assets/img/SIIT floor plan 2/f1.svg";
-import floor5 from "../assets/img/SIIT floor plan 2/f1.svg";
 import TrackMap from "./TrackMap";
-//import floor1 from "../assets/img/SIIT floor plan 2/building1/B1_L1.jpg"
-// import floor2 from "../assets/img/SIIT floor plan 2/building1/B1_L2.jpg";
-// import floor3 from "../assets/img/SIIT floor plan 2/building1/B1_L3.jpg";
-// import floor4 from "../assets/img/SIIT floor plan 2/building1/B1_L4.jpg";
-// import floor5 from "../assets/img/SIIT floor plan 2/building1/B1_L5.jpg";
+
+import "./Track.css";
+
+import floor1 from "../assets/img/SIIT floor plan 2/f1.svg";
+import floor2 from "../assets/img/SIIT floor plan 2/f2.svg";
+import floor3 from "../assets/img/SIIT floor plan 2/f3.svg";
+import floor4 from "../assets/img/SIIT floor plan 2/f4.svg";
+import floor5 from "../assets/img/SIIT floor plan 2/f5.svg";
+import floor6 from "../assets/img/SIIT floor plan 2/f6.svg";
 
 class Track extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      horizontalTabs: "fl1",
-      imageState: floor1
+      horizontalTabs: ""
     };
   }
 
@@ -48,6 +46,29 @@ class Track extends React.Component {
     return (
       <>
         <div className="content">
+          <div className = "headWrap">
+            <Row>
+              <Col lg="6" md="8" sm="10" xs="10">
+                <h2 className="trackHeader">Tracking</h2>
+              </Col>
+              <Col lg="6" md="4" sm="8" xs="8">
+                <Form className="pull-right">
+                  <InputGroup className="no-border">
+                    <Input
+                      defaultValue=""
+                      placeholder="Search..."
+                      type="text"
+                    />
+                    <InputGroupAddon addonType="append">
+                      <InputGroupText>
+                        <i className="nc-icon nc-zoom-split" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </Form>
+              </Col>
+            </Row>
+          </div>
           <Card>
             <Row>
               <Col lg="6" md="6">
@@ -66,7 +87,7 @@ class Track extends React.Component {
                           onClick={() =>
                             this.setState({
                               horizontalTabs: "fl1",
-                              imageState: floor1
+                              floorState: floor1
                             })
                           }
                         >
@@ -85,7 +106,7 @@ class Track extends React.Component {
                           onClick={() =>
                             this.setState({
                               horizontalTabs: "fl2",
-                              imageState: floor2
+                              floorState: floor2
                             })
                           }
                         >
@@ -104,7 +125,7 @@ class Track extends React.Component {
                           onClick={() =>
                             this.setState({
                               horizontalTabs: "fl3",
-                              imageState: floor3
+                              floorState: floor3
                             })
                           }
                         >
@@ -123,7 +144,7 @@ class Track extends React.Component {
                           onClick={() =>
                             this.setState({
                               horizontalTabs: "fl4",
-                              imageState: floor4
+                              floorState: floor4
                             })
                           }
                         >
@@ -142,7 +163,7 @@ class Track extends React.Component {
                           onClick={() =>
                             this.setState({
                               horizontalTabs: "fl5",
-                              imageState: floor5
+                              floorState: floor5
                             })
                           }
                         >
@@ -159,7 +180,10 @@ class Track extends React.Component {
                             this.state.horizontalTabs === "fl6" ? "active" : ""
                           }
                           onClick={() =>
-                            this.setState({ horizontalTabs: "fl6" })
+                            this.setState({
+                              horizontalTabs: "fl6",
+                              floorState: floor6
+                            })
                           }
                         >
                           Fl6
@@ -194,28 +218,14 @@ class Track extends React.Component {
                 </TabContent>
               </Col>
               <Col lg="6" md="6">
-                <Form className="pull-right">
-                  <InputGroup className="no-border">
-                    <Input
-                      defaultValue=""
-                      placeholder="Search..."
-                      type="text"
-                    />
-                    <InputGroupAddon addonType="append">
-                      <InputGroupText>
-                        <i className="nc-icon nc-zoom-split" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                  </InputGroup>
-                </Form>
+                <p className="pull-right">Export CSV</p>
               </Col>
             </Row>
           </Card>
           <Row>
             <Col lg="8">
               <Card>
-                {/* <img src={this.state.imageState} /> */}
-                <TrackMap />
+                <TrackMap stateFloor={this.state.floorState} />
               </Card>
             </Col>
 

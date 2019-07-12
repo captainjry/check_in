@@ -47,6 +47,7 @@
     "perfect-scrollbar": "1.4.0",
     "prop-types": "15.6.2",
     "react": "16.6.0",
+    "react-beautiful-dnd": "^11.0.4",
     "react-big-calendar": "0.20.2",
     "react-bootstrap-sweetalert": "4.4.1",
     "react-bootstrap-switch": "15.5.3",
@@ -59,7 +60,9 @@
     "react-bootstrap-wizard": "0.0.5",
     "react-chartjs-2": "2.7.4",
     "react-datetime": "2.16.2",
+    "react-dnd": "^9.2.1",
     "react-dom": "16.6.0",
+    "react-dragula": "^1.1.17",
     "react-google-maps": "9.4.5",
     "react-jvectormap": "0.0.4",
     "react-notification-alert": "0.0.8",
@@ -69,7 +72,9 @@
     "react-select": "2.1.1",
     "react-table": "^6.8.6",
     "react-tagsinput": "3.19.0",
-    "reactstrap": "6.5.0"
+    "react-websocket": "^2.0.1",
+    "reactstrap": "6.5.0",
+    "socket.io": "^2.2.0"
   },
   "browserslist": [
     ">0.2%",
