@@ -3,6 +3,7 @@ import React from "react";
 // import "../../node_modules/dragula/dist/dragula.css";
 // import "../../node_modules/dragula/dist/dragula.min.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import axios from "axios"
 
 import {
   Row,
@@ -17,6 +18,7 @@ import {
   InputGroupAddon,
   InputGroupText
 } from "reactstrap";
+import { throws } from "assert";
 
 const personsData = {
   persons: {
@@ -109,60 +111,88 @@ class Setting extends React.Component {
   //     let right2 = document.getElementById("right2");
   //     Dragula([left, left2, left3, left4, left5, left6, right, right2]);
   //   }
-  state = {
-    items: getItems(10),
-    selected: getItems(5, 10)
-  };
+  constructor() {
+    super();
+    this.state = {
+      items: getItems(10),
+      selected: getItems(5, 10),
+      isDraggedOver: false,
+      taggedItem: [{ tag: 1, person: [] }, { tag: 2, person: [] }, { tag: 3, person: [] }, { tag: 4, person: [] }, { tag: 5, person: [] }, { tag: 6, person: [] },],
+      people: []
+    };
+  }
 
-  /**
-   * A semi-generic way to handle multiple lists. Matches
-   * the IDs of the droppable container to the names of the
-   * source arrays stored in the state.
-   */
-  id2List = {
-    droppable: "items",
-    droppable2: "selected"
-  };
+  getPersons() {
+    axios.post(`http://192.168.16.50:3000/api/v1/peopleinfo`)
+      .then(response => {
+        if (response.status == 200) {
+          this.setState({
+            people: response.data.Data
+          })
+        }
+      })
+  }
 
-  getList = id => this.state[this.id2List[id]];
+  componentDidMount() {
+    this.getPersons();
+  }
 
-  onDragEnd = result => {
-    const { source, destination } = result;
 
-    // dropped outside the list
-    if (!destination) {
-      return;
-    }
+  cardOnDrag = (index, target) => {
+    this.state.counter = 0
+    if (target == "person") {
+      this.setState({ peopleIndex: index })
 
-    if (source.droppableId === destination.droppableId) {
-      const items = reorder(
-        this.getList(source.droppableId),
-        source.index,
-        destination.index
-      );
-
-      let state = { items };
-
-      if (source.droppableId === "droppable2") {
-        state = { selected: items };
-      }
-
-      this.setState(state);
     } else {
-      const result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
-        source,
-        destination
-      );
-
-      this.setState({
-        items: result.droppable,
-        selected: result.droppable2
-      });
+      this.setState({ tagIndex: index })
     }
-  };
+  }
+  cardOnDrop = (dropon, index) => {
+    let state = this.state
+    if (dropon == "tag") {
+      state.taggedItem[index].person = [state.people[state.peopleIndex]]
+      state.people = state.people.filter((item, index) => {
+        return index != state.peopleIndex
+      })
+      this.setState({
+        people: state.people,
+        taggedItem: state.taggedItem,
+        overIndex: null
+      })
+    } else {
+      // console.log(state.tagIndex)
+      state.people.push(state.taggedItem[state.tagIndex].person.pop())
+      this.setState({
+        taggedItem: state.taggedItem,
+        overIndex: null
+      })
+
+    }
+  }
+
+  cardOnDragOver = e => {
+    e.preventDefault();
+  }
+  cardOnDragEnter = index => {
+    this.state.counter++
+    this.setState({ isDraggedOver: true, overIndex: index })
+  }
+
+  cardOnDragLeave = index => {
+    this.state.counter--
+    if (this.state.counter == 0) {
+      this.setState({ isDraggedOver: false, overIndex: index })
+    }
+  }
   render() {
+    let dragOverStyle = {
+      background: "lawngreen",
+      filter: "drop-shadow(0 0 10px lawngreen)",
+      transform: "scale(1.1)",
+      letterSpacing: "2px",
+      transition: "0.5s"
+    }
+
     return (
       <div className="content">
         <div className="headWrap">
@@ -204,169 +234,122 @@ class Setting extends React.Component {
             </Col>
           </Row>
           <Row>
+
+            {/* TAG */}
             <Col lg="7">
               <Card>
-                <Row>
-                  <Col lg="6">
-                    <Card>
-                      <CardHeader>tag1</CardHeader>
-                      <hr />
-                      <div id="left">
-                        <CardBody>
-                          <p>user1</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                    <Card>
-                      <CardHeader>tag2</CardHeader>
-                      <hr />
-                      <div id="left2">
-                        <CardBody>
-                          <p>user2</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                    <Card>
-                      <CardHeader>tag3</CardHeader>
-                      <hr />
-                      <div id="left3">
-                        <CardBody>
-                          <p>user3</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                  </Col>
-                  <Col lg="6">
-                    <Card>
-                      <CardHeader>tag4</CardHeader>
-                      <hr />
-                      <div id="left4">
-                        <CardBody>
-                          <p>user4</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                    <Card>
-                      <CardHeader>tag5</CardHeader>
-                      <hr />
-                      <div id="left5">
-                        <CardBody>
-                          <p>user5</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                    <Card>
-                      <CardHeader>tag6</CardHeader>
-                      <hr />
-                      <div id="left6">
-                        <CardBody>
-                          <p>user6</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                  </Col>
-                </Row>
+                <CardBody>
+                  <Row>
+                    {
+                      this.state.taggedItem.map((item, index) => {
+                        console.log(item);
+                        return (
+                          <Col lg="6">
+                            <Card
+                              style={
+                                item.person.length < 1 &&
+                                  this.state.tagIndex == null &&
+                                  this.state.isDraggedOver &&
+                                  this.state.overIndex == index ?
+                                  dragOverStyle : {}}
+                              draggable={this.state.taggedItem[index].person.length != 0 ? true : false}
+                              onDragStart={() => this.cardOnDrag(index, "tag")}
+                              onDragEnd={() => this.setState({ overIndex: null, tagIndex: null })}
+                              onDrop={() => {
+                                if (item.person.length < 1 && this.state.tagIndex == null) {
+                                  this.cardOnDrop("tag", index)
+                                }
+                              }}
+                              onDragOver={this.cardOnDragOver}
+                              onDragEnter={() => this.cardOnDragEnter(index)}
+                              onDragLeave={() => this.cardOnDragLeave(index)}
+                            >
+                              <CardBody>
+                                <p><b>Tag {item.tag}</b></p>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                                {
+                                  item.person.length != 0 ?
+                                    <div>
+                                      <p>
+                                        <b>User:</b> {item.person[0].person_firstname} {item.person[0].person_lastname}
+                                      </p>
+                                      <p>
+                                        <b>User:</b> {item.person[0].person_tel}
+                                      </p>
+                                      <p>
+                                        <b>User:</b> {item.person[0].person_email}
+                                      </p>
+                                    </div>
+                                    : null
+                                }
+                              </CardBody>
+                            </Card>
+                          </Col>
+                        );
+                      })
+                    }
+                  </Row>
+                </CardBody>
               </Card>
             </Col>
-            <Col lg="5">
-              <Card>
-                <Row>
-                  <Col>
-                    <Card>
-                      <div id="right">
+
+
+            {/* PERSONS */}
+            <Col lg="5" >
+              <Card
+
+
+              >
+                <CardBody>
+                  <Row
+                    style={{
+                      maxHeight: "300px",
+                      overflow: "scroll"
+                    }}>
+                    {
+                      this.state.people.map((item, index) => {
+                        return (
+                          <Col lg="6">
+                            <Card
+                              draggable={true}
+                              onDragStart={() => this.cardOnDrag(index, "person")}
+                              onDragEnd={() => { this.setState({ peopleIndex: null }) }}
+                            >
+                              <CardBody>
+                                <p><b>{`${item.person_firstname}  ${item.person_lastname}`}</b></p>
+                                <p><b>Tel:</b> {item.person_tel}</p>
+                                <p><b>Email: </b>{item.person_email}</p>
+                              </CardBody>
+                            </Card>
+                          </Col>
+                        )
+                      })
+                    }
+                  </Row>
+                  <Row>
+                    <Col lg="12">
+                      <Card
+                        style={this.state.isDraggedOver && this.state.overIndex == -1 ? dragOverStyle : {}}
+                        onDrop={() => this.cardOnDrop("person", -1)}
+                        onDragOver={this.cardOnDragOver}
+                        onDragEnter={() => this.cardOnDragEnter(-1)}
+                        onDragLeave={() => this.cardOnDragLeave(-1)}
+                      >
+                        <CardHeader></CardHeader>
                         <CardBody>
-                          <p>user7</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
+                          <p><b>+ DROP CARD HERE</b></p>
                         </CardBody>
-                      </div>
-                    </Card>
-                    <Card>
-                      <div id="right2">
-                        <CardBody>
-                          <p>user8</p>
-                          <p>Lorem ipsum dolor sit amet.</p>
-                        </CardBody>
-                      </div>
-                    </Card>
-                  </Col>
-                </Row>
+                      </Card>
+                    </Col>
+
+                  </Row>
+                </CardBody>
               </Card>
             </Col>
           </Row>
-          <Row>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
-                >
-                  {this.state.items.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        >
-                          {item.content}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-            <Droppable droppableId="droppable2">
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
-                >
-                  {this.state.selected.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        >
-                          {item.content}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-          </Row>
+
         </div>
-      </div>
+      </div >
     );
   }
 }
