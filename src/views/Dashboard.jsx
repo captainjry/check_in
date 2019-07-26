@@ -1,12 +1,8 @@
-import Select from "react-select";
+
 import React from "react";
 // react plugin used to create charts
-import { Line, Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut } from "react-chartjs-2";
 // react plugin for creating vector maps
-import { VectorMap } from "react-jvectormap";
-import avatar from "../assets/img/faces/ayo-ogunseinde-2.jpg";
-import { Component } from "react";
-import TagsInput from "react-tagsinput";
 import ReactDatetime from "react-datetime";
 import moment from "moment";
 import { getCurrentDate } from "./getdate";
@@ -15,50 +11,24 @@ import axios from "axios";
 // reactstrap components
 import {
   Collapse,
-  Badge,
   Button,
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
   FormGroup,
   Input,
   Table,
   Row,
   Col,
-  UncontrolledTooltip
 } from "reactstrap";
 
 import {
-  chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4,
   chartExample5,
-  chartExample6,
-  chartExample7,
   chartExample10
 } from "../variables/charts.jsx";
 
-var mapData = {
-  AU: 760,
-  BR: 550,
-  CA: 120,
-  DE: 1300,
-  FR: 540,
-  GB: 690,
-  GE: 200,
-  IN: 200,
-  RO: 600,
-  RU: 300,
-  US: 2920
-};
 const yearOffset = 60;
 var yesterday = ReactDatetime.moment();
 var valid = function(current) {
@@ -188,6 +158,18 @@ class Dashboard extends React.Component {
       });
   };
 
+  late = date_format => {
+    let startDate = { date: date_format };
+    axios
+      .post("http://192.168.16.50:3000/api/v1/attenp", startDate)
+      .then(res => {
+        let countlate = res.Data.late
+        this.setState({ late: countlate });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   late = date_format => {
     let startDate = { date: date_format };
     axios

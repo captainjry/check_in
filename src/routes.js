@@ -28,8 +28,9 @@ import Usermanagement from "./views/Usermanagement.jsx";
 import Wizard from "./views/forms/Wizard.jsx";
 import Report from "./views/Report.jsx";
 import Track from "./views/Track.jsx";
+import Setting from "./views/Setting.jsx";
 
-const routes = [  
+const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -131,33 +132,13 @@ const routes = [
     ]
   },
   {
-    path: "/vector-map",
-    name: "Setting",
-    icon: "nc-icon nc-bank",
-    component: Dashboard,
-    layout: "/admin"
-  },
-  /*{
-    path: "/widgets",
+    path: "/setting",
     name: "Setting",
     icon: "nc-icon nc-box",
-    component: Widgets,
+    component: Setting,
     layout: "/admin"
-  },*/
-  /*{
-    path: "/charts",
-    name: "Charts",
-    icon: "nc-icon nc-chart-bar-32",
-    component: Charts,
-    layout: "/admin"
-  },
-  {
-    path: "/calendar",
-    name: "Calendar",
-    icon: "nc-icon nc-calendar-60",
-    component: Calendar,
-    layout: "/admin"
-  }*/
+  }
+
 ];
 
 export default routes;

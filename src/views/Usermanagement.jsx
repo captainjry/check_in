@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import {
   Pagination,
@@ -6,18 +7,8 @@ import {
   PaginationLink,
   Button,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
   Input,
-  Table,
   Row,
   Col,
   UncontrolledTooltip
@@ -30,7 +21,32 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      peopleinfo: []
+    };
+  }
+  componentDidMount() {
+    axios
+
+      .post("http://192.168.16.50:3000/api/v1/peopleinfo")
+      .then(res => {
+        const response = res.data.Data;
+        //console.log(response);
+        let peopleinfo = [];
+        response.map((item, key) => {
+          peopleinfo.push({
+            name: item.person_firstname + " " + item.person_lastname,
+            tel: item.person_tel,
+            email: item.person_email
+          });
+        });
+        this.setState({ peopleinfo: peopleinfo });
+
+        console.log(peopleinfo);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   render() {
     return (
@@ -58,445 +74,71 @@ class Dashboard extends React.Component {
             type="text"
           />
           <Row>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
+          {this.state.peopleinfo.map((item, key) => {
+            return (
+              
+              <Col lg="6">
+                <Card>
+                  <CardBody>
+                    <Row>
+                      <Col lg="3">
+                        <img
+                          alt="..."
+                          className="img-raisedc2"
+                          src={require("../assets/img/faces/erik-lucatero-2.jpg")}
+                        />
+                      </Col>
+                      <Col lg="9">
+                        <Row className="menucard">
+                          <Button
+                            style={buttonStyle}
+                            className="btn-round btn-icon btn-icon-mini btn-neutral"
+                            color="info"
+                            id="tooltip42906017"
+                            title=""
+                            type="button"
+                          >
+                            <i className="nc-icon nc-ruler-pencil" />
+                          </Button>
+                          <UncontrolledTooltip
+                            delay={0}
+                            target="tooltip42906017"
+                          >
+                            Edit Task
+                          </UncontrolledTooltip>
+                          <Button
+                            style={buttonStyle}
+                            className="btn-round btn-icon btn-icon-mini btn-neutral"
+                            color="danger"
+                            id="tooltip570363224"
+                            title=""
+                            type="button"
+                          >
+                            <i className="nc-icon nc-simple-remove" />
+                          </Button>
+                          <UncontrolledTooltip
+                            delay={0}
+                            target="tooltip570363224"
+                          >
+                            Remove
+                          </UncontrolledTooltip>
+                        </Row>
+                        <Row>
+                          <Col className="name">{item.name}</Col>
+                        </Row>
+
+                        <Row className="info">Mobile : {item.tel}</Row>
+                        <Row className="info">Email : {item.email}</Row>
+                      </Col>
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Col>
+              
+            );
+          })}
           </Row>
-          <Row>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col lg="6">
-              <Card>
-                <CardBody>
-                  <Row>
-                    <Col lg="3">
-                      <img
-                        alt="..."
-                        className="img-raisedc2"
-                        src={require("../assets/img/faces/erik-lucatero-2.jpg")}
-                      />
-                    </Col>
-                    <Col lg="9">
-                      <Row className="menucard">
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="info"
-                          id="tooltip42906017"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-ruler-pencil" />
-                        </Button>
-                        <UncontrolledTooltip delay={0} target="tooltip42906017">
-                          Edit Task
-                        </UncontrolledTooltip>
-                        <Button
-                          style={buttonStyle}
-                          className="btn-round btn-icon btn-icon-mini btn-neutral"
-                          color="danger"
-                          id="tooltip570363224"
-                          title=""
-                          type="button"
-                        >
-                          <i className="nc-icon nc-simple-remove" />
-                        </Button>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip570363224"
-                        >
-                          Remove
-                        </UncontrolledTooltip>
-                      </Row>
-                      <Row>
-                        <Col className="name">Dakota Rice</Col>
-                      </Row>
-                      <Row className="info">Position</Row>
-                      <Row className="info">Mobile : 0xxxxxxxxx</Row>
-                      <Row className="info">Email : xxxxx@mail.com</Row>
-                    </Col>
-                  </Row>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+
           <Row className="page">
             <nav aria-label="Page navigation example">
               <Pagination
